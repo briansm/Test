@@ -21,6 +21,7 @@ class ListaDoble :
         pass
 
     # Buscar un nodo, retorna true/false [JORGE]
+    # ------- se deberia de ver el cambio no?
     def buscarNodo(self,valorABuscar) : 
         pass
 
