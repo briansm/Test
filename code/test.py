@@ -24,18 +24,22 @@ class ListaDoble :
         print("hola mundo x20")
         print("hola mundo x30")
         print("hola mundo x40")
-        
-      print ("intento")
+        print ("intento")
 
 
         pass
 
+
     # Buscar un nodo, retorna true/false [JORGE]
-    # --- prro!!!!
+    # ------- se deberia de ver el cambio no?
+    def metodoJ(self):
+        print("Metodo nuevo modificado por mi, Jorge :v")
     def buscarNodo(self,valorABuscar) : 
         print("listo")
         print("prro!!! ahorita vi los cambios que hice")
         # ------ espero que estos se vean
+
+        print('bandaaaaaa')
 
     # Imprimir Lista: 8->3->5->1 [DIEGO]
     def mostrarNodosSiguientes(self) : 
