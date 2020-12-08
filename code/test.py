@@ -25,7 +25,9 @@ class ListaDoble :
     def metodoJ(self):
         print("Metodo nuevo modificado por mi, Jorge :v")
     def buscarNodo(self,valorABuscar) : 
-        pass
+        print("listo")
+        print("prro!!! ahorita vi los cambios que hice")
+        # ------ espero que estos se vean
 
     # Imprimir Lista: 8->3->5->1 [DIEGO]
     def mostrarNodosSiguientes(self) : 
