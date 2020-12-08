@@ -21,8 +21,11 @@ class ListaDoble :
         pass
 
     # Buscar un nodo, retorna true/false [JORGE]
+    # --- prro!!!!
     def buscarNodo(self,valorABuscar) : 
-        pass
+        print("listo")
+        print("prro!!! ahorita vi los cambios que hice")
+        # ------ espero que estos se vean
 
     # Imprimir Lista: 8->3->5->1 [DIEGO]
     def mostrarNodosSiguientes(self) : 
