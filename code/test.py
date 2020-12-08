@@ -31,7 +31,7 @@ class ListaDoble :
     # Imprimir Lista: 8->3->5->1 [DIEGO] Solo toy viendo :3
     def mostrarNodosSiguientes(self) : 
         print('Hola mundo')
-        #este vendria siendo una prueba mas :3
+        #este vendria siendo una prueba mas :3 AAAAAAAAAAAAAAA
 
     # Imprimir Lista: 1->5->3->8 [EDGAR]
     def mostrarNodosAnteriores(self) :
