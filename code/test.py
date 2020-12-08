@@ -21,6 +21,9 @@ class ListaDoble :
         pass
 
     # Buscar un nodo, retorna true/false [JORGE]
+    # ------- se deberia de ver el cambio no?
+    def metodoJ(self):
+        print("Metodo nuevo modificado por mi, Jorge :v")
     def buscarNodo(self,valorABuscar) : 
         pass
 
