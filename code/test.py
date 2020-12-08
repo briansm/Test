@@ -24,7 +24,7 @@ class ListaDoble :
     def buscarNodo(self,valorABuscar) : 
         pass
 
-    # Imprimir Lista: 8->3->5->1 [DIEGO]
+    # Imprimir Lista: 8->3->5->1 [DIEGO] Solo toy viendo :3
     def mostrarNodosSiguientes(self) : 
         pass
 
