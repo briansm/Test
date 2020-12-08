@@ -18,21 +18,29 @@ class ListaDoble :
 
     # Agregar nodo al final de la lista [GLEIMY]
     def agregarNodo(self,valorIngresado):
+ 
 
         print("hola mundo x10")
+        print("hola mundo x20")
+
+    
         pass
 
     # Buscar un nodo, retorna true/false [JORGE]
+    # --- prro!!!!
     def buscarNodo(self,valorABuscar) : 
-        pass
+        print("listo")
+        print("prro!!! ahorita vi los cambios que hice")
+        # ------ espero que estos se vean
 
     # Imprimir Lista: 8->3->5->1 [DIEGO]
     def mostrarNodosSiguientes(self) : 
-        pass
+        print('Hola mundo')
 
     # Imprimir Lista: 1->5->3->8 [EDGAR]
     def mostrarNodosAnteriores(self) :
         pass
+    
 
 
     if __name__ == "__main__":
