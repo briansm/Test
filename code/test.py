@@ -31,6 +31,7 @@ class ListaDoble :
     # Imprimir Lista: 1->5->3->8 [EDGAR]
     def mostrarNodosAnteriores(self) :
         pass
+    
 
 
     if __name__ == "__main__":
@@ -43,3 +44,5 @@ class ListaDoble :
         # print( miLista.buscarNodo(0) )
         # miLista.mostrarNodosAnteriores()
         # miLista.mostrarNodosSiguientes()
+        
+        print("prueba preuba ")
