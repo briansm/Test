@@ -18,7 +18,6 @@ class ListaDoble :
 
     # Agregar nodo al final de la lista [GLEIMY]
     def agregarNodo(self,valorIngresado):
- 
         #cambio desde dekstop
         # if we can read this  its ok :)  
         print("hola mundo x10")
@@ -26,6 +25,9 @@ class ListaDoble :
         print("hola mundo x30")
         print("hola mundo x40")
         
+      print ("intento")
+
+
         pass
 
     # Buscar un nodo, retorna true/false [JORGE]
