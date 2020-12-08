@@ -1,5 +1,6 @@
 class NodoLista :
     def __init__(self,valorIngresado) :
+        #Este es mi cambio
         self.valorIngresado = valorIngresado
         self.siguiente = None
         self.anterior = None
