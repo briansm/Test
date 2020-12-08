@@ -19,8 +19,7 @@ class ListaDoble :
     # Agregar nodo al final de la lista [GLEIMY]
     def agregarNodo(self,valorIngresado):
       print ("intento")
-      print ("intento2 ")
-    
+
         pass
 
     # Buscar un nodo, retorna true/false [JORGE]
@@ -50,4 +49,5 @@ class ListaDoble :
         # print( miLista.buscarNodo(0) )
         # miLista.mostrarNodosAnteriores()
         # miLista.mostrarNodosSiguientes()
+
 
