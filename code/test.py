@@ -32,6 +32,12 @@ class ListaDoble :
 
         print('bandaaaaaa')
 
+        print('inicio del for')
+        for i in range(5)
+            print(f'la iteracion es: {i}')
+        print('fin del ciclo')
+
+
     # Imprimir Lista: 8->3->5->1 [DIEGO]
     def mostrarNodosSiguientes(self) : 
         print('Hola mundo')
