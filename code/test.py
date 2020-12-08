@@ -19,7 +19,7 @@ class ListaDoble :
     # Agregar nodo al final de la lista [GLEIMY]
     def agregarNodo(self,valorIngresado):
       print ("intento")
-        pass
+      
 
     # Buscar un nodo, retorna true/false [JORGE]
     # ------- se deberia de ver el cambio no?
