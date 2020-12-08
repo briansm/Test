@@ -42,6 +42,10 @@ class ListaDoble :
 
         print('bandaaaaaa')
 
+
+
+        print('este es el cambio luego de los cambios :v')
+
     # Imprimir Lista: 8->3->5->1 [DIEGO]
     def mostrarNodosSiguientes(self) : 
         print('Hola mundo')
