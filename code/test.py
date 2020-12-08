@@ -19,15 +19,18 @@ class ListaDoble :
     # Agregar nodo al final de la lista [GLEIMY]
     def agregarNodo(self,valorIngresado):
       print ("intento")
-
-        pass
+      
 
     # Buscar un nodo, retorna true/false [JORGE]
-    # --- prro!!!!
+    # ------- se deberia de ver el cambio no?
+    def metodoJ(self):
+        print("Metodo nuevo modificado por mi, Jorge :v")
     def buscarNodo(self,valorABuscar) : 
         print("listo")
         print("prro!!! ahorita vi los cambios que hice")
         # ------ espero que estos se vean
+
+        print('bandaaaaaa')
 
     # Imprimir Lista: 8->3->5->1 [DIEGO]
     def mostrarNodosSiguientes(self) : 
