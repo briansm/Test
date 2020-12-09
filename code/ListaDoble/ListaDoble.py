@@ -21,7 +21,12 @@ class ListaDoble :
     
     # Buscar un nodo, retorna true/false [JORGE]
     def buscarNodo(self,valorABuscar) :
-        pass
+        self.aux = self.primerNodo
+        while True :
+            if self.aux.valorIngresado == valorABuscar :
+                return True
+            self.aux = self.aux.siguiente
+        return False
 
     # Imprimir Lista: 8->3->5->1 [DIEGO]
     def mostrarNodosSiguientes(self) :
@@ -31,13 +36,13 @@ class ListaDoble :
     def mostrarNodosAnteriores(self) :
         pass
 
-    if __name__ == "__main__":
-        pass
-        # miLista = ListaDoble()
-        # miLista.agregarNodo(8)
-        # miLista.agregarNodo(3)
-        # miLista.agregarNodo(5)
-        # miLista.agregarNodo(1)
-        # print( miLista.buscarNodo(0) )
-        # miLista.mostrarNodosAnteriores()
-        # miLista.mostrarNodosSiguientes()
+if __name__ == "__main__":
+    #miLista = ListaDoble()
+    #miLista.agregarNodo(8)
+    #miLista.agregarNodo(3)
+    #miLista.agregarNodo(5)
+    #miLista.agregarNodo(1)
+    #print( miLista.buscarNodo(0) )
+    # miLista.mostrarNodosAnteriores()
+    # miLista.mostrarNodosSiguientes()
+    pass
