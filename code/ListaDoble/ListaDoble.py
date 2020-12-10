@@ -30,7 +30,14 @@ class ListaDoble :
 
     # Imprimir Lista: 8->3->5->1 [DIEGO]
     def mostrarNodosSiguientes(self) :
-        pass
+        validar = True
+        temp = self.primerNodo
+        while (validar):
+            print(temp)
+            if temp == self.ultimoNodo:
+                validar = False
+            else:
+                temp = temp.siguiente
 
     # Imprimir Lista: 1->5->3->8 [EDGAR]
     def mostrarNodosAnteriores(self) :
