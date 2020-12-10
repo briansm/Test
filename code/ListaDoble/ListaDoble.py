@@ -34,6 +34,7 @@ class ListaDoble :
 
     # Imprimir Lista: 1->5->3->8 [EDGAR]
     def mostrarNodosAnteriores(self) :
+    	print("prueba git")
         pass
 
 if __name__ == "__main__":
