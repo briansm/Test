@@ -54,6 +54,7 @@ class ListaDoble :
 
     # Imprimir Lista: 1->5->3->8 [EDGAR]
     def mostrarNodosAnteriores(self) :
+    	print()
         pass
     
 
