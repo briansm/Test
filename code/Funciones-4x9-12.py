@@ -1,5 +1,4 @@
-#funciones en repositorio de prueba
-
+from listaDoble import *
 #import claseBD
 #import claseArbolB
 import os
@@ -52,8 +51,37 @@ class ListaDobledeArboles :
         return 0
 
     def eliminar(self,nombreTabla) :
-        pass
-        
+        if self.estaVacia() != None :
+            aux = self.inicio
+            while aux != None :
+                if aux.nombre == nombreTabla :
+                    if aux.anterior == None and aux.siguiente == None :
+                        self.inicio=self.fin=None
+                        return 0
+                    #en el original no tenias los elif
+                    elif aux.anterior == None :
+                        self.inicio = self.inicio.siguiente
+                        self.inicio.anterior = None
+                        aux.siguiente = None
+                        return 0
+                    elif aux.siguiente == None :
+                        self.fin = self.fin.anterior
+                        self.fin.siguiente = None
+                        aux.anterior = None
+                        return 0
+                    else:
+                        aux.anterior.siguiente = aux.siguiente
+                        aux.siguiente.anterior = aux.anterior
+                        aux.anterior = None
+                        aux.siguiente = None
+                        return 0
+                else:
+                    aux = aux.siguiente
+        else:
+            print("No existen tablas")
+            #return("BD vacia")
+            #return(4)
+
     def modificar(self,nombreViejo,nombreNuevo):
         aux = self.inicio
         while aux != None :
@@ -62,11 +90,36 @@ class ListaDobledeArboles :
                 return 0
             aux = aux.siguiente
 
+    def graficar(self):
+        f = open("listadoble.dot", "w")            
+        f.write("digraph G {\n")
+        f.write("node [shape = rect, width=1, height=0.4];\n")     
+        f.write("rankdir=LR;\n")  
+        
+        n=self.inicio
+        while (n.siguiente!=None):
+            #la linea siguiente es para mostrar el nombre de la tabla por separadao, por el momento no es necesario
+            #f.write(str(n.nombre)+"[label="+"\""+str.(n.nombre)+"\""+"];")
+            f.write("\""+str(n.nombre)+"\"->"+"\""+str(n.siguiente.nombre)+"\";\n")
+            f.write("\n")
+            n=n.siguiente
+
+        n=self.fin
+        while n.anterior!=None :
+            f.write("\""+str(n.nombre)+"\"->"+"\""+str(n.anterior.nombre)+"\";\n")
+            f.write("\n")
+            n=n.anterior
+
+        f.write("}")
+        f.close()
+        os.system("dot -Tjpg listadoble.dot -o listadoble.png")
+
 
 #Funcion 1 - crear tabla
-# def createTable(database: str, table: str, numberColumns: int) -> int:     **descomentar lo siguiente al unir el proyecto**
+# def createTable(database: str, table: str, numberColumns: int) -> int:    
     def createTable(self,database,table,numberColumns) :
-        #if buscarBD(database) == True :                                            #esto!
+        ed = ListaDOBLE()
+        if ed.buscarNodo(database) == 2 :                                            
             if self.buscarTabla(table) == False :
                 r = self.insertar(table,numberColumns)
                 if r==0 :
@@ -78,25 +131,26 @@ class ListaDobledeArboles :
             else:
                 #return ("Tabla existente")
                 return (3)
-        #else:                                                                      #esto!
+        else:                                                                      
             #return ("BD inexistente")
-            #return (2)                                                             #esto!
+            return (2)                                                             
 
 #Funcion 2 - mostrar tablas
-# def showTables(database: str) -> list:                    #**descomentar lo siguiente al unir el proyecto**
-    def showTables(self) :
+# def showTables(database: str) -> list:                    
+    def showTables(self,database) :
         tablas = []
-        #if buscarBD(database) == True :                                            #esto!
-        if self.estaVacia() != None :
+        ed = ListaDOBLE()
+        if ed.buscarNodo(database) == 2 :                                             
+            if self.estaVacia() != None :
                 #devuelve la lista con los nombres de las tablas
                 aux = self.inicio
                 while aux != None :
                     tablas.append(aux.nombre)
                     aux = aux.siguiente       
-        else:
+            else:
                 return tablas
-        #else:                                                                      #esto!
-            #return None                                                            #esto!
+        else:                                                                    
+            return None                                                           
 
 #Funcion 3 - mostrar el contenido de la tabla
 # def extractTable(database: str, table: str) -> list:
@@ -105,9 +159,10 @@ class ListaDobledeArboles :
 # def extractRangeTable(database: str, table: str, columnNumber: int, lower: any, upper: any) -> list:
 
 #Funcion 9 - cambiar nombre a la tabla
-# def alterTable(database: str, tableOld: str, tableNew: str) -> int:  #**descomentar lo siguiente al unir el proyecto**
+# def alterTable(database: str, tableOld: str, tableNew: str) -> int:  
     def alterTable(self,database,tableOld,tableNew) :
-        #if buscarBD(database) == True:                                             #esto!
+        ed = ListaDOBLE()
+        if ed.buscarNodo(database) == 2 :                                           
             if self.buscarTabla(tableNew) == False :
                 if self.buscarTabla(tableOld) == True :
                     r = self.modificar(tableOld,tableNew)
@@ -123,9 +178,9 @@ class ListaDobledeArboles :
             else:
                 #return("tableNew existente")
                 return(4)
-        #else:                                                                      #esto!
+        else:                                                                     
             #return ("BD inexistente")
-            #return (2)                                                             #esto!
+            return (2)                                                            
 
 
 #Funcion 10 - agregar columna
@@ -135,9 +190,10 @@ class ListaDobledeArboles :
 # def alterDropColumn(database: str, table: str, columnNumber: int) -> int:
 
 #Funcion 12 - eliminar tabla
-# def dropTable(database: str, table: str) -> int:                #**descomentar lo siguiente al unir el proyecto**
+# def dropTable(database: str, table: str) -> int:           
     def dropTable(self,database,table) :
-        #if buscarBD(database) == True :                                            #esto!
+        ed = ListaDOBLE()
+        if ed.buscarNodo(database) == 2 : 
             if self.buscarTabla(table) == True :
                 r = self.eliminar(table)
                 if r==0 :
@@ -149,20 +205,41 @@ class ListaDobledeArboles :
             else:
                 #return ("Tabla inexistente")
                 return (3) 
-        #else:                                                                      #esto!
+        else:                                                                    
             #return ("BD inexistente")
-            #return (2) 
+            return (2) 
 
 
 if __name__ == "__main__":
+    print("\n")
+    #Pruebas de BD
+    e=ListaDOBLE()
+    e.agregarLista("bd1")
+    e.agregarLista("bd4")
+    e.agregarLista("bd2")
+    e.agregarLista("bd3")
+    e.imprimir()
+
+    #Pruebas de lista de tablas
     p = ListaDobledeArboles()
     
     p.createTable("bd1","tabla1",4)
-    p.createTable("bd1","tabla2",9)
+    p.createTable("bd2","tabla2",9)
     p.createTable("bd1","tabla4",6)
-    p.createTable("bd1","tabla3",4)
+    p.createTable("bd4","tabla3",4)
     p.createTable("bd1","tabla9",5)
+    p.verNodos()
 
+    #p.showTables("bd1")
+
+    #print("\n")
+    p.alterTable("bd1","tabla4","tabla200")
+    p.verNodos()
+
+    #print("\n")
+    #p.dropTable("bd1","tabla3")
     #p.verNodos()
 
-    p.showTables()
+    #p.graficar()
+
+    print("\n termino")
