@@ -1,4 +1,4 @@
-from graphviz import Digraph
+#from graphviz import Digraph
 
 class Nodo:
     def __init__(self, str):
@@ -123,7 +123,7 @@ class ListaDOBLE:
             lista.append(tmp.str)
             tmp = tmp.siguiente
         return lista
-
+'''
     #Método Graficar
     def graficar(self, nombre):
         cadena = ""
@@ -164,3 +164,4 @@ class ListaDOBLE:
         #genera el archivo .Dot y una imagen png
         g.render(nombre+'.gv.png', view=True)
         #g.view() metodo de graphviz para generar pdf con la imagen
+'''
