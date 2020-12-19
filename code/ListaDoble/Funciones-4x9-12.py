@@ -1,4 +1,3 @@
-#funciones en repositorio de prueba
 
 #import claseBD
 #import claseArbolB
@@ -52,8 +51,37 @@ class ListaDobledeArboles :
         return 0
 
     def eliminar(self,nombreTabla) :
-        pass
-        
+        if self.estaVacia() != None :
+            aux = self.inicio
+            while aux != None :
+                if aux.nombre == nombreTabla :
+                    if aux.anterior == None and aux.siguiente == None :
+                        self.inicio=self.fin=None
+                        return 0
+                    #en el original no tenias los elif
+                    elif aux.anterior == None :
+                        self.inicio = self.inicio.siguiente
+                        self.inicio.anterior = None
+                        aux.siguiente = None
+                        return 0
+                    elif aux.siguiente == None :
+                        self.fin = self.fin.anterior
+                        self.fin.siguiente = None
+                        aux.anterior = None
+                        return 0
+                    else:
+                        aux.anterior.siguiente = aux.siguiente
+                        aux.siguiente.anterior = aux.anterior
+                        aux.anterior = None
+                        aux.siguiente = None
+                        return 0
+                else:
+                    aux = aux.siguiente
+        else:
+            print("No existen tablas")
+            #return("BD vacia")
+            #return(4)
+
     def modificar(self,nombreViejo,nombreNuevo):
         aux = self.inicio
         while aux != None :
@@ -62,11 +90,35 @@ class ListaDobledeArboles :
                 return 0
             aux = aux.siguiente
 
+    def graficar(self):
+        f = open("listadoble.dot", "w")            
+        f.write("digraph G {\n")
+        f.write("node [shape = rect, width=1, height=0.4];\n")     
+        f.write("rankdir=LR;\n")  
+        
+        n=self.inicio
+        while (n.siguiente!=None):
+            #la linea siguiente es para mostrar el nombre de la tabla por separadao, por el momento no es necesario
+            #f.write(str(n.nombre)+"[label="+"\""+str.(n.nombre)+"\""+"];")
+            f.write("\""+str(n.nombre)+"\"->"+"\""+str(n.siguiente.nombre)+"\";\n")
+            f.write("\n")
+            n=n.siguiente
+
+        n=self.fin
+        while n.anterior!=None :
+            f.write("\""+str(n.nombre)+"\"->"+"\""+str(n.anterior.nombre)+"\";\n")
+            f.write("\n")
+            n=n.anterior
+
+        f.write("}")
+        f.close()
+        os.system("dot -Tjpg listadoble.dot -o listadoble.png")
+
 
 #Funcion 1 - crear tabla
 # def createTable(database: str, table: str, numberColumns: int) -> int:     **descomentar lo siguiente al unir el proyecto**
     def createTable(self,database,table,numberColumns) :
-        #if buscarBD(database) == True :                                            #esto!
+        #if buscarBD(database) == 2 :                                            #esto!
             if self.buscarTabla(table) == False :
                 r = self.insertar(table,numberColumns)
                 if r==0 :
@@ -86,7 +138,7 @@ class ListaDobledeArboles :
 # def showTables(database: str) -> list:                    #**descomentar lo siguiente al unir el proyecto**
     def showTables(self) :
         tablas = []
-        #if buscarBD(database) == True :                                            #esto!
+        #if buscarBD(database) == 2 :                                            #esto!
         if self.estaVacia() != None :
                 #devuelve la lista con los nombres de las tablas
                 aux = self.inicio
@@ -107,7 +159,7 @@ class ListaDobledeArboles :
 #Funcion 9 - cambiar nombre a la tabla
 # def alterTable(database: str, tableOld: str, tableNew: str) -> int:  #**descomentar lo siguiente al unir el proyecto**
     def alterTable(self,database,tableOld,tableNew) :
-        #if buscarBD(database) == True:                                             #esto!
+        #if buscarBD(database) == 2:                                             #esto!
             if self.buscarTabla(tableNew) == False :
                 if self.buscarTabla(tableOld) == True :
                     r = self.modificar(tableOld,tableNew)
@@ -137,7 +189,7 @@ class ListaDobledeArboles :
 #Funcion 12 - eliminar tabla
 # def dropTable(database: str, table: str) -> int:                #**descomentar lo siguiente al unir el proyecto**
     def dropTable(self,database,table) :
-        #if buscarBD(database) == True :                                            #esto!
+        #if buscarBD(database) == 2 :                                            #esto!
             if self.buscarTabla(table) == True :
                 r = self.eliminar(table)
                 if r==0 :
@@ -155,6 +207,7 @@ class ListaDobledeArboles :
 
 
 if __name__ == "__main__":
+    print("\n")
     p = ListaDobledeArboles()
     
     p.createTable("bd1","tabla1",4)
@@ -162,7 +215,18 @@ if __name__ == "__main__":
     p.createTable("bd1","tabla4",6)
     p.createTable("bd1","tabla3",4)
     p.createTable("bd1","tabla9",5)
+    p.verNodos()
 
+    #p.showTables()
+
+    #print("\n")
+    p.alterTable("bd1","tabla4","tabla200")
     #p.verNodos()
 
-    p.showTables()
+    #print("\n")
+    p.dropTable("bd1","tabla3")
+    #p.verNodos()
+
+    p.graficar()
+
+    print("\n termino")
