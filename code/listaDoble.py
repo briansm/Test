@@ -6,6 +6,7 @@ class Nodo:
         self.siguiente = None
         self.anterior = None
         self.abajo = None
+        self.tabla = None
         
 class ListaDOBLE:
     def __init__(self):
@@ -56,7 +57,7 @@ class ListaDOBLE:
             while actual != None and encontrado != True:
                 if actual.str == dato:
                     encontrado = True
-                    return 2
+                    return actual
                 actual = actual.siguiente
             if not encontrado:
                 return 0
