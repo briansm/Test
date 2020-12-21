@@ -120,6 +120,7 @@ class ListaDobledeArboles :
 # def createTable(database: str, table: str, numberColumns: int) -> int:    
     def createTable(self,database,table,numberColumns) :
         #print(e)
+        bdEncontrada  = ""
         bdEncontrada=e.buscarNodo(database)
         if bdEncontrada != None :                                            
             if self.buscarTabla(table) == False :
@@ -231,13 +232,12 @@ if __name__ == "__main__":
     pp  = ListaDobledeArboles()
     
     p.createTable("bd1","tabla1",4)
-    pp.createTable("bd4","tabla2",9)
-
+    p.createTable("bd4","tabla2",9)
     p.createTable("bd1","tabla4",6)
-    #p.verNodos()
+    p.verNodos()
 
-    print(e.primero.tabla.nombre,e.primero.tabla.siguiente.nombre)
-    print(e.primero.siguiente.tabla.nombre)
+    #print(e.primero.tabla.nombre,e.primero.tabla.siguiente.nombre)
+    #print(e.primero.siguiente.tabla.nombre)
     
     '''
     
