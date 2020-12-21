@@ -5,7 +5,7 @@ import os
 
 class nodo :
     def __init__(self,nombreDeLaTabla,numeroDeColumnasDeLaTabla) :
-    #def __init__(self,nombreDeLaTabla,numeroDeColumnasDeLaTabla,listaDeElementosDeLaTabla) : descomentar si es necesario
+    #def __init__(self,nombreDeLaTabla,numeroDeColumnasDeLaTabla,listaDeElementosDeLaTabla) : #descomentar si es necesario
         self.nombre = nombreDeLaTabla
         self.columnas = numeroDeColumnasDeLaTabla
         #self.elementos = listaDeElementosDeLaTabla
@@ -13,6 +13,7 @@ class nodo :
         self.anterior = None
 
 class ListaDobledeArboles :
+    
     def __init__ (self) :
         self.inicio = None
         self.fin = None
@@ -48,7 +49,7 @@ class ListaDobledeArboles :
             self.fin.siguiente = nuevo
             nuevo.anterior = self.fin
             self.fin = nuevo
-        return 0
+        return self.inicio
 
     def eliminar(self,nombreTabla) :
         if self.estaVacia() != None :
@@ -118,11 +119,15 @@ class ListaDobledeArboles :
 #Funcion 1 - crear tabla
 # def createTable(database: str, table: str, numberColumns: int) -> int:    
     def createTable(self,database,table,numberColumns) :
-        ed = ListaDOBLE()
-        if ed.buscarNodo(database) == 2 :                                            
+        #print(e)
+        bdEncontrada  = ""
+        bdEncontrada=e.buscarNodo(database)
+        if bdEncontrada != None :                                            
             if self.buscarTabla(table) == False :
-                r = self.insertar(table,numberColumns)
-                if r==0 :
+                #BD encontrada.tablas=table
+                bdEncontrada.tabla = self.insertar(table,numberColumns)
+                if bdEncontrada.tabla!=None :
+
                     #return ("Operacion exitosa")
                     return (0)
                 else:
@@ -218,17 +223,26 @@ if __name__ == "__main__":
     e.agregarLista("bd4")
     e.agregarLista("bd2")
     e.agregarLista("bd3")
-    e.imprimir()
+    print(e.imprimir())
 
+
+    
     #Pruebas de lista de tablas
     p = ListaDobledeArboles()
+    pp  = ListaDobledeArboles()
     
     p.createTable("bd1","tabla1",4)
-    p.createTable("bd2","tabla2",9)
+    p.createTable("bd4","tabla2",9)
     p.createTable("bd1","tabla4",6)
+    p.verNodos()
+
+    #print(e.primero.tabla.nombre,e.primero.tabla.siguiente.nombre)
+    #print(e.primero.siguiente.tabla.nombre)
+    
+    '''
+    
     p.createTable("bd4","tabla3",4)
     p.createTable("bd1","tabla9",5)
-    p.verNodos()
 
     #p.showTables("bd1")
 
@@ -241,5 +255,5 @@ if __name__ == "__main__":
     #p.verNodos()
 
     #p.graficar()
-
-    print("\n termino")
+'''
+   # print("\n termino")
