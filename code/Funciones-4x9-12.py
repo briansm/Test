@@ -133,6 +133,7 @@ class ListaDobledeArboles :
 # def createTable(database: str, table: str, numberColumns: int) -> int:    
     def createTable(self,database,table,numberColumns) :
         #print(e)
+        bdEncontrada  = ""
         bdEncontrada=e.buscarNodo(database)
         if bdEncontrada != None and bdEncontrada != 0:      #se agrego la 2da condicion por si retorna algun numero                                       
             if self.buscarTabla(table) == False :
