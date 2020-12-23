@@ -1,0 +1,4 @@
+digraph g{
+node [shape = rect, width=1, height=0.4];
+rankdir=UP;
+}

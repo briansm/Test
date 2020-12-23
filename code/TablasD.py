@@ -5,16 +5,16 @@ class TablasArboles:
     def __init__(self,bd) :
         self.bd=bd
         
-    def agregarColumna(self,val) :
-        for i in range(len(ab.listRegister)) :
-            ab.listRegister[i].register.append(val)
+    def agregarColumna(self,val,tabla) :
+        for i in range(len(tabla.elementosAB.listRegister)) :
+            tabla.elementosAB.listRegister[i].register.append(val)
         return True
         #descomentar para confirmar
         #print(ab.listRegister[0].register)
 
-    def eliminarColumna(self,num) :
-        for i in range(len(ab.listRegister)):
-            del ab.listRegister[i].register[num]
+    def eliminarColumna(self,num,tabla) :
+        for i in range(len(tabla.elementosAB.listRegister)):
+            del tabla.elementosAB.listRegister[i].register[num]
         return True
         #descomentar para confirmar
         #print(ab.listRegister[0].register)
@@ -30,7 +30,7 @@ class TablasArboles:
         if bdEncontrada != None and bdEncontrada != 0:      #se agrego la 2da condicion por si retorna algun numero                                       
             if bdEncontrada.tablas == None :
                 bdEncontrada.tablas = ListaDobledeArboles()
-            if bdEncontrada.tablas.buscar(table) == False :
+            if bdEncontrada.tablas.buscar(table) == None :
                 #BD encontrada.tablas=table
                 bdEncontrada.tablas.insertar(table,numberColumns)
                 if bdEncontrada.tablas != None :
@@ -61,10 +61,11 @@ class TablasArboles:
     def extractT(self, database, table) :
         list = []
         bdEncontrada=self.bd.buscarNodo(database)
-        if bdEncontrada != None and bdEncontrada != 0 :                                            
-            if bdEncontrada.tablas.buscar(table) == True :
-                for i in range(len(ab.listRegister)):
-                    list.append(ab.listRegister[i].register)
+        if bdEncontrada != None and bdEncontrada != 0 : 
+            tablaEncontrada =  bdEncontrada.tablas.buscar(table)                                          
+            if tablaEncontrada != None :
+                for i in range(len(tablaEncontrada.elementosAB.listRegister)):
+                    list.append(tablaEncontrada.elementosAB.listRegister[i].register)
                     #para confirmar
                     #print(p.extractTable("bd1","tabla1"))
                     #print(objetoClaseTabla.extractTable("Nombre de la base de datos","Nombre de la tabla"))
@@ -81,11 +82,12 @@ class TablasArboles:
     def extractRT(self, database, table, columnNumber, lower, upper) :
         list = []
         bdEncontrada=self.bd.buscarNodo(database)
-        if bdEncontrada != None and bdEncontrada != 0 :                                            
-            if bdEncontrada.tablas.buscar(table) == True :
-                for i in range(len(ab.listRegister)):
-                    if str(lower) <= ab.listRegister[i].register[int(columnNumber)] and ab.listRegister[i].register[int(columnNumber)] <= str(upper) :
-                        list.append(ab.listRegister[i].register[columnNumber])
+        if bdEncontrada != None and bdEncontrada != 0 :  
+            tablaEncontrada =  bdEncontrada.tablas.buscar(table)                                            
+            if tablaEncontrada == True :
+                for i in range(len(tablaEncontrada.elementosAB.listRegister)):
+                    if str(lower) <= tablaEncontrada.elementosAB.listRegister[i].register[int(columnNumber)] and tablaEncontrada.elementosAB.listRegister[i].register[int(columnNumber)] <= str(upper) :
+                        list.append(tablaEncontrada.elementosAB.listRegister[i].register[columnNumber])
                 return list  
             else:
                 #return("tableNew existente")
@@ -99,7 +101,7 @@ class TablasArboles:
     def alterT(self,database,tableOld,tableNew) :
         bdEncontrada=self.bd.buscarNodo(database)
         if bdEncontrada != None and bdEncontrada != 0 :                                            
-            if bdEncontrada.tablas.buscar(tableNew) == False :
+            if bdEncontrada.tablas.buscar(tableNew) == None :
                 if bdEncontrada.tablas.buscar(tableOld) == True :
                     r = bdEncontrada.tablas.modificar(tableOld,tableNew)
                     if r==0 :
@@ -123,8 +125,9 @@ class TablasArboles:
     def alterAC(self, database, table, default) :
         bdEncontrada=self.bd.buscarNodo(database)
         if bdEncontrada != None and bdEncontrada != 0 :
-            if bdEncontrada.tablas.buscar(table) == True :
-                if self.agregarColumna(default) == True :
+            tablaEncontrada =  bdEncontrada.tablas.buscar(table)
+            if tablaEncontrada != None :
+                if self.agregarColumna(default, tablaEncontrada) == True :
                     #return ("Operacion exitosa")
                     return 0
                 else:
@@ -142,8 +145,9 @@ class TablasArboles:
     def alterDC(self, database, table, columnNumber) :
         bdEncontrada=self.bd.buscarNodo(database)
         if bdEncontrada != None and bdEncontrada != 0 :
-            if bdEncontrada.tablas.buscar(table) == True :
-                if self.eliminarColumna(columnNumber) == True :
+            tablaEncontrada =  bdEncontrada.tablas.buscar(table)
+            if tablaEncontrada != None :
+                if self.eliminarColumna(columnNumber,tablaEncontrada) == True :
                     #return ("Operacion exitosa")
                     return 0
                 else:
@@ -161,7 +165,7 @@ class TablasArboles:
     def dropT(self,database,table) :
         bdEncontrada=self.bd.buscarNodo(database)
         if bdEncontrada != None and bdEncontrada != 0 :
-            if bdEncontrada.tablas.buscar(table) == True :
+            if bdEncontrada.tablas.buscar(table) != None :
                 r = bdEncontrada.tablas.eliminar(table)
                 if r==0 :
                     #return ("Operacion exitosa")
