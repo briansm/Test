@@ -5,6 +5,7 @@
 from tkinter import* 
 import sys
 from tkinter import filedialog as FileDialog
+from tkinter import messagebox
 from io import open
 
 
@@ -197,6 +198,27 @@ def guardar_como():
     else:
         mensaje.set("Guardado cancelado")
         ruta = ""   
+
+
+#-------------------------------METODO PARA AGREGAR LOS GRÁFICOS 
+#-------------PARA TABLAS 
+def GraficasTabla(): 
+    return None
+#---------------PARA LAS BASES DE DATOS 
+
+def GraficasBD():
+    return None  
+
+#.................PARA EL ARBOL B 
+def GraficaArbolB():
+    return None      
+
+
+    
+
+def Estudiantes(): 
+      messagebox.showinfo(message="  201318564  BRIAN MORALES '\n' 201403770  EDGAR PÉREZ '\n' 201404334  JORGE ARGUETA '\n' 201503431  GLEIMY POLANCO '\n' 201503445  DIEGO FLORES", title='Grupo2')
+        
 
 #---------------AÑADIENDO SUBMENUS--------------------- 
 filemenu.add_command(label="Nuevo", command = nuevo)
