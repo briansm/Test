@@ -62,6 +62,15 @@ RegistroLabel = Label(VentanaPrincipal, text="Registro:" )
 RegistroLabel.place (x =960 , y = 240)
 RegistroLabel.config(background = "#f9e0ae" , foreground = "#682c0e", font = ("Helvetica", 9, "bold") )
 
+LlavePrimaria = Entry(VentanaPrincipal)
+LlavePrimaria.place (x = 1050 ,  y = 270)
+LlavePrimaria.config(relief = "sunken", borderwidth = 4)
+LlavePrimariaLabel = Label(VentanaPrincipal, text="Llave Primaria:" )
+LlavePrimariaLabel.place (x =960 , y = 270)
+LlavePrimariaLabel.config(background = "#f9e0ae" , foreground = "#682c0e", font = ("Helvetica", 9, "bold") )
+
+
+
 #---------------CREACIÓN DE CAMPOS PARA LAS Tablas ---------- 
 
 #**************NOMBRE DE LA TABLA****************
@@ -74,12 +83,12 @@ nomTablaLabel.config(background = "#f9e0ae" , foreground = "#682c0e", font = ("H
 
 #*************NOMBRE DE LA BASE DE DATOS ************** 
 
-nomBaseDatos = Entry(VentanaPrincipal)
-nomBaseDatos.place(x = 560 , y = 205)
-nomBaseDatos.config(relief = "sunken", borderwidth = 4)
-nomBaseDatosLabel = Label(VentanaPrincipal, text="Nombre BD:")
-nomBaseDatosLabel.place(x = 460 , y = 205)
-nomBaseDatosLabel.config(background = "#f9e0ae" , foreground = "#682c0e", font = ("Helvetica", 9, "bold"))
+nomBaseDatosT = Entry(VentanaPrincipal)
+nomBaseDatosT.place(x = 560 , y = 205)
+nomBaseDatosT.config(relief = "sunken", borderwidth = 4)
+nomBaseDatosTLabel = Label(VentanaPrincipal, text="Nombre BD:")
+nomBaseDatosTLabel.place(x = 460 , y = 205)
+nomBaseDatosTLabel.config(background = "#f9e0ae" , foreground = "#682c0e", font = ("Helvetica", 9, "bold"))
 
 #***********No de Columna**************
 numeroDeColumna = Entry(VentanaPrincipal)
@@ -149,7 +158,7 @@ def abrir():
     mensaje.set("Abrir fichero")
     ruta = FileDialog.askopenfilename(
         initialdir='.', 
-        filetypes=(("Ficheros de texto", "*.txt"),),
+        filetypes=(("Ficheros de texto", "*.csv"),),
         title="Abrir un fichero de texto")
 
     if ruta != "":
@@ -176,7 +185,7 @@ def guardar_como():
     mensaje.set("Guardar fichero como")
 
     fichero = FileDialog.asksaveasfile(title="Guardar fichero", 
-        mode="w", defaultextension=".txt")
+        mode="w", defaultextension=".csv")
 
     if fichero is not None:
         ruta = fichero.name
