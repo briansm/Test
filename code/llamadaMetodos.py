@@ -20,7 +20,7 @@ imp = showDatabases()
 print(imp)
 
 
-cargarRegistro = loadCSV('Entrada.xls','db1',"Tabla3")
+cargarRegistro = loadCSV('Entrada2.xls','db1',"Tabla3")
 print(cargarRegistro)
 reg = extractRow('db1', "table", [4])
 print(reg)
