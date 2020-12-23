@@ -75,12 +75,12 @@ LlavePrimariaLabel.config(background = "#f9e0ae" , foreground = "#682c0e", font 
 #---------------CREACIÓN DE CAMPOS PARA LAS Tablas ---------- 
 
 #**************NOMBRE DE LA TABLA****************
-nomTabla = Entry(VentanaPrincipal)
-nomTabla.place( x = 560 , y = 170)
-nomTabla.config(relief = "sunken", borderwidth = 4)
-nomTablaLabel = Label(VentanaPrincipal, text="Nombre Tabla:")
-nomTablaLabel.place (x = 460 , y = 170)
-nomTablaLabel.config(background = "#f9e0ae" , foreground = "#682c0e", font = ("Helvetica", 9, "bold"))
+nomTablaT = Entry(VentanaPrincipal)
+nomTablaT.place( x = 560 , y = 170)
+nomTablaT.config(relief = "sunken", borderwidth = 4)
+nomTablaTLabel = Label(VentanaPrincipal, text="Nombre Tabla:")
+nomTablaTLabel.place (x = 460 , y = 170)
+nomTablaTLabel.config(background = "#f9e0ae" , foreground = "#682c0e", font = ("Helvetica", 9, "bold"))
 
 #*************NOMBRE DE LA BASE DE DATOS ************** 
 
@@ -106,12 +106,12 @@ numeroDeColumna2Label = Label(VentanaPrincipal, text="No. Columna2:" )
 numeroDeColumna2Label.place (x =460 , y = 270)
 numeroDeColumna2Label.config(background = "#f9e0ae" , foreground = "#682c0e", font = ("Helvetica", 9, "bold") )
 
-renombrar = Entry(VentanaPrincipal)
-renombrar.place (x = 560 ,  y = 300)
-renombrar.config(relief = "sunken", borderwidth = 4)
-renombrar = Label(VentanaPrincipal, text="Renombrar:" )
-renombrar.place (x =460 , y = 300)
-renombrar.config(background = "#f9e0ae" , foreground = "#682c0e", font = ("Helvetica", 9, "bold") )
+renombrarT = Entry(VentanaPrincipal)
+renombrarT.place (x = 560 ,  y = 300)
+renombrarT.config(relief = "sunken", borderwidth = 4)
+renombrarT = Label(VentanaPrincipal, text="Renombrar:" )
+renombrarT.place (x =460 , y = 300)
+renombrarT.config(background = "#f9e0ae" , foreground = "#682c0e", font = ("Helvetica", 9, "bold") )
 
 #------------ENTRADA DE TEXTO PARA CARGA MASIVA --------------------- 
 
@@ -258,8 +258,8 @@ opcion = OptionMenu(VentanaPrincipal, var, *opciones)
 opcion.place(x= 1000, y = 350)
 opcion.config(background = "#fc8621", fg="white", font = ("Helvetica", 10, "bold"))
 
-labelTest =Label(VentanaPrincipal, text="", font=('Helvetica', 12), fg='red')
-labelTest.place(x = 1000, y = 390)
+#labelTest =Label(VentanaPrincipal, text="", font=('Helvetica', 12), fg='red')
+#labelTest.place(x = 1000, y = 390)
 
 
 
@@ -319,8 +319,6 @@ BotonAceptarTuplas.config(background = "#682c0e", fg="white", font=("Helvetica",
 
 
 
-
-
 #-----------MENU DESPLEGABLE PARA LAS BASES DE DATOS
 
 var2 = StringVar(VentanaPrincipal)
@@ -332,6 +330,75 @@ opciones2.place(x=800 , y = 350 )
 opciones2.config(background = "#fc8621", fg="white", font = ("Helvetica", 10, "bold"))
 
 
+
+#-----------------------------AQUÍ VAN LOS METODOS PARA CREAR LAS BASES DE DATOS --------------- 
+
+def CrearDB(base):
+
+    #if 1==2: aquí busca la base de datos
+    #  
+    
+        return  "Base {} creada".format(base) #1
+    #else:
+    #    return 0 #'Error en conexion'
+
+
+def MostarDB(base):
+    return "Base {} mostrada".format(base)
+
+def RenombrarDB(base):
+    return "Base {} renombrada".format(base)
+
+def EliminarDB(base):
+    return "Base {} Eliminada".format(base)
+
+
+def BuscarDB(base):
+    return "Base {} Encontrada".format(base)
+
+def RenombrarDB(base):
+    return "Base {} Renombrada".format(base)
+
+def print_respuesta():
+    resultado = ''
+
+
+
+
+#----------------Acciones de las opciones de las bases de datos --------------
+    if nomBaseDatos2.get() != '':
+        if var2.get() == 'Crear':
+            resultado = CrearDB(nomBaseDatos2.get())
+           # if resultado == 1:
+             #   messagebox.showinfo(message=resultado, title='prueba')
+            #else:
+              #  messagebox.showerror(message=resultado, title='prueba')
+        elif var2.get() == 'Mostrar BD':
+            resultado = MostarDB(nomBaseDatos2.get())
+        
+        elif var2.get()== 'Buscar':
+            resultado = BuscarDB(BuscarBaseDatos2.get())
+        elif var2.get() == 'Renombrar':
+            resultado = RenombrarDB(RenomBaseDatos2.get())
+                
+        else:
+            resultado = EliminarDB(nomBaseDatos2.get())
+        
+        messagebox.showinfo(message=resultado, title='prueba')
+    else:
+        resultado = 'Nombre de base no ingresada'
+        messagebox.showerror(message=resultado, title='prueba')
+    
+    return None
+
+
+#---------------Este botón carga lo  que necesitamos 
+BotonAceptarBases = Button(VentanaPrincipal, text = '  OK  ', command = print_respuesta )
+BotonAceptarBases.place(x = 820 , y = 400)
+BotonAceptarBases.config(background = "#682c0e", fg="white", font=("Helvetica", 9 , "bold") )
+
+
+
 #----------------------MENU DESPLEGABLE PARA TABLAS 
 
 var3 = StringVar(VentanaPrincipal)
@@ -340,6 +407,81 @@ opciones3 = ["Crear", "Mostrar", "E.Table", "E.Range", "A.Drop", "A.Add", "A.Add
 opciones3 = OptionMenu(VentanaPrincipal, var3 , *opciones3)
 opciones3.place(x=550, y =350)
 opciones3.config(background = "#fc8621", fg="white", font = ("Helvetica", 10, "bold"))
+
+
+#----------------------AQUÍ VAN LAS FUNCIONES PARA LOS METODOS 
+
+
+def CrearTB(base1, tabla,columna):
+    return "El nombre de la base{},".format(base1), "Tabla {},".format(tabla), "y columna {}".format(columna), "fue creada."
+
+def MostrarTB(base1):
+    return "La base {}, se ha mostrado".format(base1)
+
+def ETable(base1, tabla):
+    return "La base {},".format(base1), "con la tabla {}".format(tabla), "Se ha extraido"
+
+def ERange (base1, tabla, columna, columna2, columna3):
+    return " La base {}, ".format(base1), "con la tabla {},".format(tabla), "columna {},".format(columna), "{},".format(columna2), "{}".format(columna3), "Extract range"
+
+def ADrop (base1 , tabla): 
+    return "La base {} ".format(base1), "con la tabla {}".format(tabla),"A. DROP"
+
+def AddPK(base1, tabla, columna): 
+    return "El nombre de la base{},".format(base1), "Tabla {},".format(tabla), "y columna {}".format(columna), "Agregada la PK"
+
+def RenombrarTB(base1, tabla, rename):
+    return "El nombre de la base{},".format(base1), "Tabla {},".format(tabla), "y columna {}".format(rename), "fue Renombrada."
+
+
+def AddCol (base1, tabla, default):
+    return "El nombre de la base{},".format(base1), "Tabla {},".format(tabla), "y columna {}".format(default), "fue añadida."
+
+
+def ECol(base1, tabla, col):
+    return "El nombre de la base{},".format(base1), "Tabla {},".format(tabla), "y columna {}".format(col), "fue eliminada."
+
+
+def Tablas_Prin():
+    resultadoTablas = ''
+
+#------------------------------ACCIONES TABLAS  
+
+    if nomBaseDatosT.get() != '':
+        if var3.get() == 'Crear':
+            resultadoTablas = CrearTB(nomBaseDatosT.get(), nomTablaT.get(), numeroDeColumna.get())
+        elif var3.get() == 'Mostrar':
+            resultadoTablas = MostrarTB(nomBaseDatosT.get())        
+        elif var3.get()== 'E.Table':
+            resultadoTablas = ETable(nomBaseDatosT.get(), nomTablaT.get())
+        elif var3.get() == 'E. Range':
+            resultadoTablas = ERange(nomBaseDatosT.get(), nomTablaT.get(), numeroDeColumna.get(), numeroDeColumna2.get(), renombrarT.get())
+        elif var3.get() == 'A.AddPK':
+            resultadoTablas = AddPK(nomBaseDatosT.get(), nomTablaT.get(), numeroDeColumna.get())
+        elif var3.get() == 'Renombrar':
+            resultadoTablas = RenombrarTB(nomBaseDatosT.get(), nomTablaT.get(), numeroDeColumna.get())
+
+        elif var3.get() == 'Add.Col':
+            resultadoTablas = AddCol(nomBaseDatosT.get(), nomTablaT.get(), numeroDeColumna.get())                
+        elif var3.get() == 'A.Drop':
+            resultadoTablas = ADrop(nomBaseDatosT.get(), nomTablaT.get())
+        
+        else:
+                resultadoTablas = ECol(nomBaseDatosT.get(), nomTablaT.get(), numeroDeColumna.get())
+        
+        messagebox.showinfo(message= resultadoTablas, title='Tablas')
+    
+    else:
+
+        resultadoTablas = 'No Se encontraron tablas'
+        messagebox.showerror(message=resultadoTablas, title='Tablas')
+    
+    return None
+
+
+BotonPTablas = Button(VentanaPrincipal, text = '  OK  ' , command = Tablas_Prin )
+BotonPTablas.place(x = 550 , y = 400)
+BotonPTablas.config(background = "#682c0e", fg="white", font=("Helvetica", 9 , "bold") )
 
 
 
