@@ -1,6 +1,4 @@
-from listaDoble import *
-from BTree import *
-from typing import *
+
 #import claseBD
 #import claseArbolB
 import os

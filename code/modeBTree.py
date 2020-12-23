@@ -1,4 +1,3 @@
-from listaDoble import *
 
 Ld = ListaDOBLE()
 def createDatabase(database : str)-> int:
