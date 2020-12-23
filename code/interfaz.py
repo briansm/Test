@@ -230,7 +230,7 @@ editmenu.add_command(label = "Base de Datos")
 editmenu.add_command(label = "Tabla")
 editmenu.add_command(label = "Arbol B")
 
-
+helpmenu.add_command(label = "Lista de estudiantes", command = Estudiantes)
 
 #-------------------------TITULOS DE SECCIONES-------------------
 
@@ -247,7 +247,7 @@ nomTuplasLabel = Label(VentanaPrincipal, text = "Tuplas")
 nomTuplasLabel.place(x=1000, y = 105)
 nomTuplasLabel.config(background = "#f9e0ae" , foreground = "#c24914", font = ("Helvetica", 15, "bold"))
 
-#-----MENU DESPLEGABLE PARA LAS TUPLAS
+#---------------------------------------MENU DESPLEGABLE PARA LAS TUPLAS
 
 var = StringVar(VentanaPrincipal)
 var.set('Opciones')
@@ -261,10 +261,65 @@ opcion.config(background = "#fc8621", fg="white", font = ("Helvetica", 10, "bold
 labelTest =Label(VentanaPrincipal, text="", font=('Helvetica', 12), fg='red')
 labelTest.place(x = 1000, y = 390)
 
-def callback(*args):
-    labelTest.configure(text="selected is {}".format(var.get()))
 
-var.trace("w", callback)
+
+#---------------------AQUÍ VAN LOS METODOS PARA LAS TUPLAS 
+
+def InsertarTP(tupla, tupla2, tupla3): 
+   #if la tupla existe 
+    return 'La tupla de la tabla {},'.format(tupla), 'base {},'.format(tupla2), 'Con el registro {}'.format(tupla3) ,'Fue creada' 
+   #else no puede crear nada 
+
+def ActualizarTP(tupla, tupla2 , tupla3, tupla4): 
+    return 'La tupla de la tabla {},'.format(tupla), 'base {},'.format(tupla2), 'Con el registro {}'.format(tupla3) ,'y la llave {}'.format(tupla4),'Fue Actualizada'
+
+def EliminarTP(tupla, tupla2 , tupla3): 
+    return "La tupla de la tabla {},".format(tupla), 'base {}'.format(tupla2), 'Con la llave {}'.format(tupla3), 'Fue eliminada'
+
+def LimpiarTP(tupla, tupla2): 
+    return "La tupla De la base {}".format(tupla) , 'y la columna {}, se limpió'.format(tupla2)
+
+def ExtractTP(tupla, tupla2 , tupla3 ): 
+    return "La tupla de la tabla {},".format(tupla), 'base {}'.format(tupla2), 'Con la llave {}'.format(tupla3), 'Fue Extraida'
+
+def imprimir_TP():
+    resultadoTp = ''
+ 
+
+    if nomBaseDatos.get() != '':
+
+        if var.get() == 'Insertar':
+            resultadoTp = InsertarTP(nomTabla.get(), nomBaseDatos.get(), Registro.get())
+
+
+        elif var.get() == 'Actualizar':
+            resultadoTp = ActualizarTP(nomTabla.get(), nomBaseDatos.get(), Registro.get(), LlavePrimaria.get())
+        
+        elif var.get()== 'Eliminar':
+            resultadoTp = EliminarTP(nomBaseDatos.get(), nomTabla.get(), LlavePrimaria.get())
+        elif var.get() == 'Limpiar':
+            resultadoTp = LimpiarTP(nomBaseDatos.get(), nomTabla.get())
+                
+        else:
+            resultadoTp = ExtractTP(nomBaseDatos.get(), nomTabla.get(), LlavePrimaria.get())
+        
+        messagebox.showinfo(message=resultadoTp, title='Tupla')
+    else:
+        resultadoTp = 'Tupla no reconocida'
+        messagebox.showerror(message=resultadoTp, title='Tupla')
+    
+        return None
+
+
+#---------------Este botón carga lo  que necesitamos 
+BotonAceptarTuplas = Button(VentanaPrincipal, text = '  OK  ', command = imprimir_TP )
+BotonAceptarTuplas.place(x = 1020 , y = 400)
+BotonAceptarTuplas.config(background = "#682c0e", fg="white", font=("Helvetica", 9 , "bold") )
+
+
+
+
+
 
 #-----------MENU DESPLEGABLE PARA LAS BASES DE DATOS
 
