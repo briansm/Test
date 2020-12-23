@@ -1,5 +1,4 @@
-#from code.ListaDoble import*
-#from listaDoble import *
+
 #import claseBD
 #import claseArbolB
 import os
@@ -14,7 +13,6 @@ class nodo :
         self.anterior = None
 
 class ListaDobledeArboles :
-    
     def __init__ (self) :
         self.inicio = None
         self.fin = None
@@ -116,18 +114,34 @@ class ListaDobledeArboles :
         f.close()
         os.system("dot -Tjpg listadoble.dot -o listadoble.png")
 
+    def agregarColumna(self,val) :
+        for i in range(len(ab.listRegister)) :
+            ab.listRegister[i].register.append(val)
+        return True
+        #descomentar para confirmar
+        #print(ab.listRegister[0].register)
+
+    def eliminarColumna(self,num) :
+        for i in range(len(ab.listRegister)):
+            del ab.listRegister[i].register[num]
+        return True
+        #descomentar para confirmar
+        #print(ab.listRegister[0].register)
+
+    
+        
 
 #Funcion 1 - crear tabla
 # def createTable(database: str, table: str, numberColumns: int) -> int:    
     def createTable(self,database,table,numberColumns) :
         #print(e)
+        bdEncontrada  = ""
         bdEncontrada=e.buscarNodo(database)
-        if bdEncontrada != None :                                            
+        if bdEncontrada != None and bdEncontrada != 0:      #se agrego la 2da condicion por si retorna algun numero                                       
             if self.buscarTabla(table) == False :
                 #BD encontrada.tablas=table
                 bdEncontrada.tabla = self.insertar(table,numberColumns)
                 if bdEncontrada.tabla!=None :
-
                     #return ("Operacion exitosa")
                     return (0)
                 else:
@@ -144,30 +158,63 @@ class ListaDobledeArboles :
 # def showTables(database: str) -> list:                    
     def showTables(self,database) :
         tablas = []
-        ed = ListaDOBLE()
-        if ed.buscarNodo(database) == 2 :                                             
+        bdEncontrada=e.buscarNodo(database)
+        if bdEncontrada != None and bdEncontrada != 0 :                                             
             if self.estaVacia() != None :
                 #devuelve la lista con los nombres de las tablas
                 aux = self.inicio
                 while aux != None :
                     tablas.append(aux.nombre)
-                    aux = aux.siguiente       
+                    aux = aux.siguiente  
+                return tablas     
             else:
                 return tablas
         else:                                                                    
-            return None                                                           
+            return None                                                         
 
 #Funcion 3 - mostrar el contenido de la tabla
 # def extractTable(database: str, table: str) -> list:
+    def extractTable(self, database, table) :
+        list = []
+        bdEncontrada=e.buscarNodo(database)
+        if bdEncontrada != None and bdEncontrada != 0 :                                            
+            if self.buscarTabla(table) == True :
+                for i in range(len(ab.listRegister)):
+                    list.append(ab.listRegister[i].register)
+                    #para confirmar
+                    #print(p.extractTable("bd1","tabla1"))
+                    #print(objetoClaseTabla.extractTable("Nombre de la base de datos","Nombre de la tabla"))
+                return list            
+            else:
+                #return("tableNew existente")
+                return None
+        else:                                                                     
+            #return ("BD inexistente")
+            return None 
 
 #Funcion 4 - muestra un determinado numero de elementos de la tabla
 # def extractRangeTable(database: str, table: str, columnNumber: int, lower: any, upper: any) -> list:
+    def extractRangeTable(self, database, table, columnNumber, lower, upper) :
+        list = []
+        bdEncontrada=e.buscarNodo(database)
+        if bdEncontrada != None and bdEncontrada != 0 :                                            
+            if self.buscarTabla(table) == True :
+                for i in range(len(ab.listRegister)):
+                    if str(lower) <= ab.listRegister[i].register[int(columnNumber)] and ab.listRegister[i].register[int(columnNumber)] <= str(upper) :
+                        list.append(ab.listRegister[i].register[columnNumber])
+                return list  
+            else:
+                #return("tableNew existente")
+                return None
+        else:                                                                     
+            #return ("BD inexistente")
+            return None 
 
 #Funcion 9 - cambiar nombre a la tabla
 # def alterTable(database: str, tableOld: str, tableNew: str) -> int:  
     def alterTable(self,database,tableOld,tableNew) :
-        ed = ListaDOBLE()
-        if ed.buscarNodo(database) == 2 :                                           
+        bdEncontrada=e.buscarNodo(database)
+        if bdEncontrada != None and bdEncontrada != 0 :                                            
             if self.buscarTabla(tableNew) == False :
                 if self.buscarTabla(tableOld) == True :
                     r = self.modificar(tableOld,tableNew)
@@ -187,18 +234,49 @@ class ListaDobledeArboles :
             #return ("BD inexistente")
             return (2)                                                            
 
-
 #Funcion 10 - agregar columna
 # def alterAddColumn(database: str, table: str, default: any) -> int:
+    def alterAddColumn(self, database, table, default) :
+        bdEncontrada=e.buscarNodo(database)
+        if bdEncontrada != None and bdEncontrada != 0 :
+            if self.buscarTabla(table) == True :
+                if self.agregarColumna(default) == True :
+                    #return ("Operacion exitosa")
+                    return 0
+                else:
+                    #return ("Error en la operacion")
+                    return (1)
+            else:
+                #return ("Tabla inexistente")
+                return (3)
+        else:                                                                   
+            #return ("BD inexistente")
+            return (2)
 
 #Funcion 11 - eliminar columna
 # def alterDropColumn(database: str, table: str, columnNumber: int) -> int:
-
+    def alterDropColumn(self, database, table, columnNumber) :
+        bdEncontrada=e.buscarNodo(database)
+        if bdEncontrada != None and bdEncontrada != 0 :
+            if self.buscarTabla(table) == True :
+                if self.eliminarColumna(columnNumber) == True :
+                    #return ("Operacion exitosa")
+                    return 0
+                else:
+                    #return ("Error en la operacion")
+                    return (1)
+            else:
+                #return ("Tabla inexistente")
+                return (3)
+        else:                                                                   
+            #return ("BD inexistente")
+            return (2) 
+            
 #Funcion 12 - eliminar tabla
 # def dropTable(database: str, table: str) -> int:           
     def dropTable(self,database,table) :
-        ed = ListaDOBLE()
-        if ed.buscarNodo(database) == 2 : 
+        bdEncontrada=e.buscarNodo(database)
+        if bdEncontrada != None and bdEncontrada != 0 :
             if self.buscarTabla(table) == True :
                 r = self.eliminar(table)
                 if r==0 :
@@ -216,36 +294,36 @@ class ListaDobledeArboles :
 
 
 if __name__ == "__main__":
-    print("\n")
     #Pruebas de BD
     e=ListaDOBLE()
     e.agregarLista("bd1")
     e.agregarLista("bd4")
     e.agregarLista("bd2")
-    e.agregarLista("bd3")
-    print(e.imprimir())
+    #print(e.imprimir())
 
 
     
     #Pruebas de lista de tablas
     p = ListaDobledeArboles()
-    pp  = ListaDobledeArboles()
+   # pp  = ListaDobledeArboles()
     
     p.createTable("bd1","tabla1",4)
-    pp.createTable("bd4","tabla2",9)
+   # pp.createTable("bd4","tabla2",9)
+#
 
-    p.createTable("bd1","tabla4",6)
+    
     #p.verNodos()
 
-    print(e.primero.tabla.nombre,e.primero.tabla.siguiente.nombre)
-    print(e.primero.siguiente.tabla.nombre)
+
+    #print("jsadklf")
+    #print(p.showTables("bd3"))
+    #print("jsadklf")
     
     '''
     
     p.createTable("bd4","tabla3",4)
     p.createTable("bd1","tabla9",5)
 
-    #p.showTables("bd1")
 
     #print("\n")
     p.alterTable("bd1","tabla4","tabla200")
@@ -257,4 +335,28 @@ if __name__ == "__main__":
 
     #p.graficar()
 '''
-   # print("\n termino")
+    #Pruebas de los arboles B
+    nuevoRegistro3 = Registro(["1","hstr","6"])
+    nuevoRegistro4 = Registro(["1","sdafsad","2"])
+    nuevoRegistro5 = Registro(["1","adsfasd","1"])
+
+
+    #print("---------")
+    ab = BTree()
+    #print(ab.listRegister)
+    ab.insertNode(nuevoRegistro5)    
+    ab.insertNode(nuevoRegistro4)    
+    ab.insertNode(nuevoRegistro3)
+
+
+    #print("---------")
+    #print(ab.listRegister[1].register[1])
+
+    #direccion de memoria del nodo
+    #print(ab.listRegister)
+
+    print("---------")
+    print(p.extractRangeTable("bd1","tabla1",2,0,2))
+
+    #print("\n termino")
+    

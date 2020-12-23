@@ -1,6 +1,4 @@
 
-
-import pickle
 Ld = ListaDOBLE()
 def createDatabase(database : str)-> int:
     res_1 = Ld.agregarLista(database)
@@ -14,5 +12,6 @@ def alterDatabase(databaseOld, databaseNew) -> int:
 def dropDatabase(database: str) -> int:
     res_4 = Ld.eliminarNodo(database)
     return res_4
-
+def grafica():
+    gra = Ld.GraficarConArchivo()
 
