@@ -1,7 +1,5 @@
 digraph g{
 node [shape = rect, width=1, height=0.4];
 rankdir=UP;
-"[22, 'Juanito', 'PC']|"->{"[4, 'Jose', 'Alambre']|[11, 'Carlos', 'Flor']|[103, 'Juanito', 'PC']|" "[33, 'Steve', 'Carrito']|[38, 'Steve', 'Carrito']|"};
-"[4, 'Jose', 'Alambre']|[11, 'Carlos', 'Flor']|[103, 'Juanito', 'PC']|"->{"[1, 'Steve', 'Carrito']|[3, 'Jose', 'Alambre']|" "[5, 'Steve', 'Carrito']|[6, 'Juanito', 'PC']|" "[20, 'Jose', 'Alambre']|[21, 'Juanito', 'PC']|"};
-"[33, 'Steve', 'Carrito']|[38, 'Steve', 'Carrito']|"->{"[23, 'Carlos', 'Flor']|[25, 'ASTERION', 'Flor']|" "[34, 'Carlos', 'Flor']|[36, 'Jose', 'Alambre']|" "[40, 'Juanito', 'PC']|[87, 'Jose', 'Alambre']|"};
+"[11, 'Carlos', 'Flor']|"->{"[3, 'Jose', 'Alambre']|[4, 'Jose', 'Alambre']|[5, 'Steve', 'Carrito']|[6, 'Juanito', 'PC']|" "[21, 'Juanito', 'PC']|[25, 'ASTERION', 'Flor']|[33, 'Steve', 'Carrito']|"};
 }

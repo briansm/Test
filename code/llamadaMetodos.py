@@ -20,7 +20,24 @@ imp = showDatabases()
 print(imp)
 
 
-cargarRegistro = loadCSV('Entrada2.xls','db1',"Tabla3")
+#--tablas
+print("\n-----")
+print(createTable("db1","table1",4))
+print(createTable("db1","table2",5))
+print(createTable("db2","table3",9))
+print(createTable("db2","table4",2))
+print(createTable("db3","table5",3))
+
+print(showTables("db1"))
+print(showTables("db2"))
+#print(extractTable("db1", "table1"))
+#print(extractRangeTable("bd1","tabla1",2,0,2))
+print(alterTable("db1","table1","tableNew"))
+#alterAddColumn(database, table, columnNumber) :
+#print(alterDropColumn("db1", "table1", 2))
+print(dropTable("db1","table1"))
+print(dropTable("db1","table2"))
+cargarRegistro = loadCSV('Entrada.xls','db1',"Tabla3")
 print(cargarRegistro)
 reg = extractRow('db1', "table", [4])
 print(reg)
