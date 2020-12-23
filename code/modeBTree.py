@@ -1,4 +1,5 @@
-from listaDoble import *
+
+
 import pickle
 Ld = ListaDOBLE()
 def createDatabase(database : str)-> int:

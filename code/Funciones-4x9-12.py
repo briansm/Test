@@ -1,4 +1,5 @@
-from listaDoble import *
+#from code.ListaDoble import*
+#from listaDoble import *
 #import claseBD
 #import claseArbolB
 import os
