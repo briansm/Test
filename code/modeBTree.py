@@ -1,4 +1,8 @@
-
+from listaDoble import *
+from BTree import *
+bTree = BTree()
+bTree.columPK = [0]
+bTree.maxColumna = 3  
 Ld = ListaDOBLE()
 def createDatabase(database : str)-> int:
     res_1 = Ld.agregarLista(database)
@@ -15,3 +19,28 @@ def dropDatabase(database: str) -> int:
 def grafica():
     gra = Ld.GraficarConArchivo()
 
+#-------------Tuplas-------------------
+
+def loadCSV(filepath, database, table):
+    if Ld.buscarModificar(database) == 2:
+        res_1 = bTree.loadCSV(filepath, database, table)
+        return res_1
+    else:
+        return 2
+
+def insert(database, table, register) :
+    res_2 = bTree.insert(database, table, register)
+    return res_2
+
+def extractRow(database, table, columns):
+    res_3 = bTree.extractRow(database, table, columns)
+    return res_3
+
+def update(database, table, register, columns):
+    res_4 = bTree.update(database, table, register, columns)
+    return res_4
+
+def graphTree():
+    bTree.graphBTree()
+# def delete(parameter_list):
+# def truncate():
