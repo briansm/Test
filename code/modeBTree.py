@@ -35,7 +35,6 @@ def showTables(database) :
     return T.showT(database)
 def extractTable(database, table) :
     return T.extractT(database, table)
-
 def extractRangeTable(database, table, columnNumber, lower, upper) :
     return T.extractRT(database, table, columnNumber, lower, upper)
 
@@ -49,6 +48,7 @@ def alterDropColumn(database, table, columnNumber) :
     return T.alterDC(database, table, columnNumber)
 def dropTable(database,table) :
     return T.dropT(database,table)
+    
 #-------------Tuplas-------------------
 
 def loadCSV(filepath, database, table):
