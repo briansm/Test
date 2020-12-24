@@ -1,12 +1,13 @@
 
 import os
+from BTree import BTree
+
 
 class nodo :
     def __init__(self,nombreDeLaTabla,numeroDeColumnasDeLaTabla) :
-    #def __init__(self,nombreDeLaTabla,numeroDeColumnasDeLaTabla,listaDeElementosDeLaTabla) : #descomentar si es necesario
         self.nombre = nombreDeLaTabla
         self.columnas = numeroDeColumnasDeLaTabla
-        #self.elementos = listaDeElementosDeLaTabla arbolb
+        self.elementosAB = BTree()
         self.siguiente = None
         self.anterior = None
 
@@ -27,10 +28,10 @@ class ListaDobledeArboles :
         while aux != None :
             if aux.nombre == nombreTabla :
                 #print("La tabla existe")
-                return True
+                return aux
             aux = aux.siguiente
         #print("La tabla no existe")
-        return False
+        return None
 
     #Metodo para listar los nodos
     def verNodos(self) :

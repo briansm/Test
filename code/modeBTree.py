@@ -2,9 +2,11 @@ from listaDoble import *
 from TablasD import *
 
 from BTree import *
+
 bTree = BTree()
 bTree.columPK = [0]
 bTree.maxColumna = 3  
+
 Ld = ListaDOBLE()
 T = TablasArboles(Ld)
 
@@ -31,14 +33,15 @@ def createTable(database,table,numberColumns) :
     return T.createT(database,table,numberColumns)
 def showTables(database) :
     return T.showT(database)
-def extractTable(self, database, table) :
+def extractTable(database, table) :
     return T.extractT(database, table)
-def extractRangeTable(self, database, table, columnNumber, lower, upper) :
+
+def extractRangeTable(database, table, columnNumber, lower, upper) :
     return T.extractRT(database, table, columnNumber, lower, upper)
 
 #entran las funciones 5-10 de Edgar
 
-def alterAddColumn(self, database, table, default) :
+def alterAddColumn( database, table, default) :
     return T.alterAC(database, table, default)
 def alterTable(database,tableOld,tableNew) :
     return T.alterT(database,tableOld,tableNew)
