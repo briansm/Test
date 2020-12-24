@@ -36,24 +36,34 @@ print(extractTable("db1", "table1"))
 print(alterTable("db1","table1","tableNew"))
 #alterAddColumn(database, table, columnNumber) :
 #print(alterDropColumn("db1", "table1", 2))
+<<<<<<< HEAD
 # print(dropTable("db1","table1"))
+=======
+#print(dropTable("db1","table1"))
+>>>>>>> f5227499ee199b1931015f891cce498105d91410
 print(dropTable("db5","table2"))
 print("----finT")
 
 
 
+<<<<<<< HEAD
 cargarRegistro = loadCSV('Entrada.xls','db1',"table1")
+=======
+cargarRegistro = loadCSV('C:\\Users\\argue\\Documents\\GitHub\\RepositorioPruebas\\code\\Entrada.xls','db1',"table1")
+>>>>>>> f5227499ee199b1931015f891cce498105d91410
 print(cargarRegistro)
-reg = extractRow('db1', "table1", [4])
+'''
+
+reg = extractRow('db1', "table1", [3])
 print(reg)
-reg2 = extractRow('db1', "table1", [25])
+reg2 = extractRow('db1', "table1", [1])
 print(reg2)
 up = update('db1', "table", {1:"ASTERION"}, [25])
 print(up)
 graphTree()
 extraerRegistro = extractRow("database", "table", [25])
 print(extraerRegistro)
-
+'''
 
 
 print("----ET")
