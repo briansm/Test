@@ -18,8 +18,7 @@ class TablasArboles:
         return True
         #descomentar para confirmar
         #print(ab.listRegister[0].register)
-  
-        
+    
 
 #Funcion 1 - crear tabla
 # def createTable(database: str, table: str, numberColumns: int) -> int:    
