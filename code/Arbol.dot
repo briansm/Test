@@ -1,5 +1,4 @@
 digraph g{
 node [shape = rect, width=1, height=0.4];
 rankdir=UP;
-"[3, 'Jorge', 'Carrito']|[6, 'Juanito', 'PC']|"->{"[1, 'Luis', 'Flor']|[3, 'Jose', 'Alambre']|" "[4, 'Jose', 'Alambre']|[5, 'Steve', 'Carrito']|" "[21, 'Juanito', 'PC']|[25, 'ASTERION', 'Flor']|"};
 }

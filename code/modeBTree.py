@@ -1,11 +1,11 @@
 from listaDoble import *
 from TablasD import *
 
-from BTree import *
+# from BTree import *
 
-bTree = BTree()
-bTree.columPK = [0]
-bTree.maxColumna = 3  
+# bTree = BTree()
+# bTree.columPK = [0]
+# bTree.maxColumna = 3  
 
 Ld = ListaDOBLE()
 T = TablasArboles(Ld)
@@ -51,26 +51,40 @@ def dropTable(database,table) :
     
 #-------------Tuplas-------------------
 
-def loadCSV(filepath, database, table):
-    if Ld.buscarModificar(database) == 2:
-        res_1 = bTree.loadCSV(filepath, database, table)
-        return res_1
-    else:
-        return 2
+# def loadCSV(filepath, database, table):
+#     if Ld.buscarModificar(database) == 2:
+#         res_1 = bTree.loadCSV(filepath, database, table)
+#         return res_1
+#     else:
+#         return 2
 
-def insert(database, table, register) :
-    res_2 = bTree.insert(database, table, register)
-    return res_2
+def insertT(database, table, register) :
+    return T.insert(database,table,register)
+
+def loadCSV(filepath, database, table):
+    return T.load(filepath, database, table)
 
 def extractRow(database, table, columns):
-    res_3 = bTree.extractRow(database, table, columns)
-    return res_3
+    return T.extract(database, table, columns)
 
 def update(database, table, register, columns):
-    res_4 = bTree.update(database, table, register, columns)
-    return res_4
+    return T.UP(database, table, register, columns)
 
-def graphTree():
-    bTree.graphBTree()
+def graphB(database, table):
+    return T.graphbt(database, table)
+
+# def alterAddPk(database,table,columns):
+#     return T.alterPK(database,table,columns)
+
+# def extractRow(database, table, columns):
+#     res_3 = bTree.extractRow(database, table, columns)
+#     return res_3
+
+# def update(database, table, register, columns):
+#     res_4 = bTree.update(database, table, register, columns)
+#     return res_4
+
+# def graphTree():
+#     bTree.graphBTree()
 # def delete(parameter_list):
 # def truncate():

@@ -19,7 +19,7 @@ class BTree :
         self.identity = 0
         self.maxColumna = 0
         self.listRegister = []
-        self.columPK = []
+        self.columPK = [0]
 
     def isTreeEmpty(self) :
         if self.root is None:
@@ -208,10 +208,10 @@ class BTree :
                 return self.searchRegistro(ValorDeLlave,currentNode.children[i])
 
 
-    def insert(self, database, table, register):
+    def insert(self, register):
         #if buscarNodo(database):
             #if buscarTablas(table):
-        try:
+        # try:
             if len(register) <= self.maxColumna:
                 miRegister = Registro(register)
                 self.changeTypePK(miRegister)
@@ -219,11 +219,11 @@ class BTree :
                 return 0
             else:
                 return 5
-        except :
-            return 1
+        # except :
+        #     return 1
     
     
-    def extractRow(self, database, table, columns):
+    def extractRow(self, columns):
         #if buscarNodo(database):
             #if buscarTablas(table):
 
@@ -241,20 +241,20 @@ class BTree :
 
 
     #Carga de archivo
-    def loadCSV(self, filepath, database, table):
+    def loadCSV(self, filepath):
         try:
             res = []
             import csv
             with open(filepath, 'r') as file:
                 reader = csv.reader(file, delimiter = ',')
                 for row in reader:
-                    res.append(self.insert(database,table,row))
+                    res.append(self.insert(row))
             return res
         except:
             return []
 
     #Busqueda y actiualizacion de datos almacenados en el arbol
-    def update(self, database, table, register, columns):
+    def update(self, register, columns):
         #if buscarNodo(database):
             #if buscarTablas(table):
             
@@ -293,12 +293,12 @@ class BTree :
 
 
 
-    #def deleteTruncate (self, database, table):
-        #if buscarNodo(database):
-            #if buscarTablas(table):
-
-                #tabla.registros = None
-
+    def truncate (self, database, table):
+        try:
+            self.root = None
+            return 0
+        except:
+            return 1
 
 # if __name__ == "__main__":
     # miRegister = Registro([33,"Steve","Morales"])
