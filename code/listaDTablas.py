@@ -1,6 +1,6 @@
 
 import os
-from BTree import BTree
+from BTree import *
 
 
 class nodo :

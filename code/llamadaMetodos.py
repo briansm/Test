@@ -33,22 +33,17 @@ print(showTables("db2"))
 print("----")
 print(extractTable("db1", "table1"))
 #print(extractRangeTable("bd1","tabla1",2,0,2))
-print(alterTable("db1","table1","tableNew"))
-#alterAddColumn(database, table, columnNumber) :
-#print(alterDropColumn("db1", "table1", 2))
-#print(dropTable("db1","table1"))
+#print(alterTable("db1","table1","tableNew"))
+print(alterDropColumn("db1", "table1", 2))
+print(dropTable("db1","table1"))
 print(dropTable("db5","table2"))
 print("----finT")
 
-# print(insertT("db2","table3",["1","hola","Mundo"]))
-print(loadCSV("Entrada2.xls","db2","table3"))
-print(extractRow("db2","table3",[11]))
-print(update("db2","table3",{1:"ASTERION"},[11]))
-print(extractRow("db2","table3",[11]))
-graphB("db2","table3")
-# cargarRegistro = loadCSV('Entrada.xls','db1',"table1")
-# print(cargarRegistro)
-'''
+
+
+cargarRegistro = loadCSV('C:\\Users\\argue\\Documents\\GitHub\\RepositorioPruebas\\code\\Entrada.xls','db1',"table1")
+print(cargarRegistro)
+
 
 reg = extractRow('db1', "table1", [3])
 print(reg)
@@ -59,7 +54,7 @@ print(up)
 graphTree()
 extraerRegistro = extractRow("database", "table", [25])
 print(extraerRegistro)
-'''
+
 
 
 print("----ET")
