@@ -1,5 +1,5 @@
-from ISAMMode.ISAM import ISAM
-from ISAMMode.ISAM import Tuple
+from .ISAM import ISAM
+from .ISAM import Tuple
 
 
 class Table:

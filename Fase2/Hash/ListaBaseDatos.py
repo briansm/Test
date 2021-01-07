@@ -3,10 +3,10 @@
 # Copyright (c) 2020 TytusDb Team
 
 
-from storage import BaseDatos as DB
+from Hash import BaseDatos as DB
 import os, shutil
 
-main_path = os.getcwd()+"\\data\\hash"
+main_path = os.getcwd()+"/data/hash"
 
 
 class ListaBaseDatos:
@@ -34,7 +34,7 @@ class ListaBaseDatos:
         if not temp:
 
             try:
-                temp_path = main_path+"\\"+database
+                temp_path = main_path+"/"+database
 
                 if not os.path.isdir(temp_path):
                     os.mkdir(temp_path)
@@ -74,8 +74,8 @@ class ListaBaseDatos:
                 try:
                     temp_old.Name = databaseNew
                     
-                    temp_path_new = main_path+"\\"+databaseNew
-                    temp_path_old = main_path+"\\"+databaseOld
+                    temp_path_new = main_path+"/"+databaseNew
+                    temp_path_old = main_path+"/"+databaseOld
 
                     temp_old.main_path = temp_path_new
 
@@ -102,7 +102,7 @@ class ListaBaseDatos:
             try:
                 self.lista_bases_datos.remove(temp)
 
-                temp_path = main_path+"\\"+database
+                temp_path = main_path+"/"+database
 
                 try:
                     os.rmdir(temp_path)

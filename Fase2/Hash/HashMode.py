@@ -3,11 +3,11 @@
 # Copyright (c) 2020 TytusDb Team
 
 
-from storage import ListaBaseDatos, serealizar
+from Hash import ListaBaseDatos, serealizar
 import os, re, csv
 
 _storage = ListaBaseDatos.ListaBaseDatos()
-_main_path = os.getcwd()+"\\data\\hash"
+_main_path = os.getcwd()+"/data/hash"
 _db_name_pattern = "^[a-zA-Z][a-zA-Z0-9#@$_]*"
 
 
@@ -23,7 +23,7 @@ def setDir(path: str) -> int:
     """
 
     global _main_path
-    temp_path = path+"\\data"
+    temp_path = path+"/data"
 
     try:
         if os.path.isdir(path):
@@ -49,11 +49,11 @@ def setDir(path: str) -> int:
 
 def __init__():
 
-    if not os.path.isdir(os.getcwd()+"\\data"):
-        os.mkdir(os.getcwd()+"\\data")
+    if not os.path.isdir(os.getcwd()+"/data"):
+        os.mkdir(os.getcwd()+"/data")
 
-    if not os.path.isdir(os.getcwd()+"\\data\\hash"):
-        os.mkdir(os.getcwd()+"\\data\\hash")
+    if not os.path.isdir(os.getcwd()+"/data/hash"):
+        os.mkdir(os.getcwd()+"/data/hash")
         
     for db in os.listdir(_main_path):
         _storage.createDatabase(db)
