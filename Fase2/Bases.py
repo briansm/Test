@@ -1,10 +1,11 @@
-import avl.avlMode as avl
-import b.BMode as b
-import bplus.BPlusMode as bplus
-import DictMode.DictMode as DM
-import isam.ISAMMode as isam
-import storageManager.jsonMode as j
-import Hash.HashMode as Hash
+from storage.avl import avlMode as avl
+from storage.b import BMode as b
+from storage.bplus import BPlusMode as bplus
+from storage.DictMode import DictMode as DM
+from storage.isam import ISAMMode as isam
+from storage.json import jsonMode as j
+from storage.Hash import HashMode as Hash
+# from storage.HashWindows import HashMode as Hash
 
 currentMode,avlList,bList,bplusList,dictList,jsonList,isamList,hashList = [],[],[],[],[],[],[],[]
 
