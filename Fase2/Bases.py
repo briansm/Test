@@ -536,8 +536,7 @@ def checksumDatabase(database, mode):
             MegaCadena = MegaCadena + i
 
             for j in extractTable(database, i):
-                MegaCadena = MegaCadena + ''.join(j)
-
+                MegaCadena = MegaCadena + str(j)
         if mode == "MD5":
             return CodMD5(MegaCadena)
         else:
@@ -558,7 +557,7 @@ def checksumTable(database, table, mode):
             
             for j in extractTable(database, i):
                 if i == table:
-                    MegaCadena = MegaCadena + ''.join(j)
+                    MegaCadena = MegaCadena + str(j)
 
         
         if mode == "MD5":
@@ -668,10 +667,11 @@ print(createDatabase("Base1","avl","utf8"))
 
 print(createTable('Base1','Pais',4))
 
-print(insert('Base1', 'Pais', ['GTM', 'Guatemala',  'Central America', '108889']))
-print(insert('Base1', 'Pais', ['SLV', 'El Salvado', 'Central America',  '21041']))
+print(insert('Base1', 'Pais', ['GTM', 'Guatemala',  'Central America', 108889]))
+print(insert('Base1', 'Pais', ['SLV', 'El Salvado', 'Central America',  21041]))
 
 # print(showDatabases())
 # print(showTables('Base1'))
 
 print(checksumDatabase('Base1','SHA256'))
+print(checksumTable('Base1','Pais','MD5'))
