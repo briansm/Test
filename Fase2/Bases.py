@@ -7,7 +7,7 @@ from storage.json import jsonMode as j
 #from storage.Hash import HashMode as Hash
 import hashlib
 from storage.HashWindows import HashMode as Hash
-
+import os
 currentMode,avlList,bList,bplusList,dictList,jsonList,isamList,hashList = [],[],[],[],[],[],[],[]
 
 # ----------Bases de datos------------------
@@ -675,3 +675,43 @@ print(insert('Base1', 'Pais', ['SLV', 'El Salvado', 'Central America',  21041]))
 
 print(checksumDatabase('Base1','SHA256'))
 print(checksumTable('Base1','Pais','MD5'))
+
+
+# ------------------ 8. Grafos ------------------
+
+#def graphDSD(database: str) -> str:
+#Relacion de tablas con respecto a las FK #no son utiles todavia, al no usar fk no funcionan
+def graphDSD(database: str) :
+    if DM.existDB(database) != None :
+        GDSD(database)
+    else:
+        #BD no existe #modificar el numero si es necesario, no recuerdo que devolvia si no la encontraba
+        return 1
+
+def GDSD(baseDatos) :
+    pass
+#def graphDF(database: str, table: str) -> str:
+#Relacion de registros de 1 tabla con repecto a la PK e indices unicos
+def graphDF(database: str, table: str) :
+    l=[] 
+    l.append(extractTable(database,table))
+    GDF(table,l)
+
+def GDF(tabla, lista:list) :
+    f = open("Grafo.dot","w")
+    f.write("digraph g {\n")
+    f.write("node [shape=record]\n")
+    f.write("subgraph cluster_0 {")
+    f.write("\""+str(lista[0][0][0])+"\";\n")
+    for i in range(len(lista[0][0][0])):
+        f.write("\""+str(lista[0][i+1][0])+"\";\n") 
+    f.write("label=\""+tabla+"\";")
+    f.write("color=blue;\n")
+    f.write("}")
+    for i in range(len(lista[0][0][0])):
+        f.write(lista[0][0][0]+"->"+lista[0][i+1][0]+"\n")
+    f.write("}")
+    f.close()
+    os.system("dot -Tjpg Grafo.dot -o Grafo.png")
+
+    
