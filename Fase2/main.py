@@ -3,14 +3,14 @@ import time
 inicio = time.time()
 #Area para probar funciones
 print("------------------Pruebas para Bases de datos-----------------------")
-print("CREAR BD:", j.createDatabase("CALIFICAION",'b','utf8'), "Esperado:",0)
-print("CREAR BD:", j.createDatabase("CALIFICAION",'b','utf8'), "Esperado:",2)
+print("CREAR BD:", j.createDatabase("CALIFICAION",'avl','utf8'), "Esperado:",0)
+print("CREAR BD:", j.createDatabase("CALIFICAION",'avl','utf8'), "Esperado:",2)
 print("ALTER BD:", j.alterDatabase("CALIFICAION", "CAMBIADO"), "Esperado:",0)
 print("ALTER BD:", j.alterDatabase("CALIFICAION", "CAMBIADO"), "Esperado:",2)
 print("DROP BD:", j.dropDatabase("CALIFICACION"), "Esperado:", 2)
 print("DROP BD:", j.dropDatabase("CAMBIADO"), "Esperado:", 0)
 print("SHOW BD:", j.showTables("CAMBIADO"), "Esperado:", None)
-print("CREAR BD:", j.createDatabase("calificacion",'b','utf8'), "Esperado:",0)
+print("CREAR BD:", j.createDatabase("calificacion",'avl','utf8'), "Esperado:",0)
 
 print("------------------Pruebas para Tablas-----------------------")
 print("---- Create Table ----")
@@ -139,6 +139,6 @@ print("------------------------------------------------------------------")
 print("Tiempo de Ejecucion:", final-inicio, "segundos")
 
 
-j.graphDF("calificacion","primaria")
+print(j.graphDSD("calificacion"))
 
 
