@@ -13,6 +13,9 @@ currentMode,avlList,bList,bplusList,dictList,jsonList,isamList,hashList = [],[],
 global lista
 lista = list()
 
+global listados
+listados = list()
+
 class controlFK:
     def __init__(self, database, table, indexName, columns, tableRef, columnsRef):
         self.database = database
@@ -22,6 +25,12 @@ class controlFK:
         self.tableRef = tableRef
         self.columnsRef = columnsRef
 
+class controlUnique:
+    def __init__(self, database, table, indexName, columns):
+        self.database = database
+        self.table = table
+        self.indexName = indexName
+        self.columns = columns       
 
 # ----------Bases de datos------------------
 def createDatabase(database, mode, encoding):
@@ -127,13 +136,12 @@ def createTable(database, table, numbercolumns):
 
 def alterTableMode(database, table, mode):
     pass
-def alterTableAddFK(database, table, indexName, columns,  tableRef, columnsRef):
-    
-    try:    
-        Temporal = showTables(database)
-        bandera = False
-        contador = 0
-    except:
+def alterTableAddFK(database, table, indexName, columns,  tableRef, columnsRef):  
+    Temporal = showTables(database)
+    bandera = False
+    contador = 0
+
+    if Temporal == 2:
         return 2
 
     try: 
@@ -165,6 +173,57 @@ def alterTableDropFK(database, table, indexName):
                         for i in range(len(lista)):
                             if indexName == lista[i].indexName:
                                 lista.pop(i)
+                                return 0
+                            else:
+                                return 4
+                    else:
+                        return 3
+            else:
+                return 2
+    except:
+        return 1
+
+def alterTableAddUnique(database, table, indexName, columns):    
+    Temporal = showTables(database)
+    bandera = False
+    bandera2 = False
+    contador = 0
+
+    if Temporal == 2:
+        return 2
+
+    try:
+        for i in Temporal:
+            if table == i:
+                contador += 1
+                if contador >= 1:
+                    bandera = True
+                
+        for j in range(len(listados)):
+            if indexName == listados[j].indexName:
+                bandera2 = True
+            
+
+        if bandera == False:
+            return 3
+        elif bandera2 == True:
+            return 5
+        else:
+            listados.append(controlUnique(database,table,indexName,columns))
+            return 0
+    except:
+        return 1
+
+
+def alterTableDropUnique(database, table, indexName):
+    try:
+        for j in range(len(listados)):
+            if database == listados[j].database:
+                for k in range(len(listados)):
+                    if table == listados[k].table:
+                        for i in range(len(listados)):
+                            if indexName == listados[i].indexName:
+                                listados.pop(i)
                                 return 0
                             else:
                                 return 4
@@ -735,6 +794,11 @@ print(checksumTable('Base1','Pais','MD5'))
 
 print(alterTableAddFK('Base1','Pais','Perritos',['Nombre'],'Paises',['NombreP']))
 print(alterTableDropFK('Base1','Pais','Perritos'))
+
+print(alterTableAddUnique('Base1','Pais','Gatitos',['Nombre']))
+print(alterTableAddUnique('Base1','Paises','Perrillos',['Nombre']))
+
+print(alterTableDropUnique('Base1','Pais','Gatitos'))
 
 
 # ------------------ 8. Grafos ------------------
