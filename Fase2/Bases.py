@@ -9,6 +9,17 @@ import hashlib
 from storage.HashWindows import HashMode as Hash
 
 currentMode,avlList,bList,bplusList,dictList,jsonList,isamList,hashList = [],[],[],[],[],[],[],[]
+global lista
+lista = list()
+
+class controlFK:
+    def __init__(self, database, table, indexName, columns, tableRef, columnsRef):
+        self.database = database
+        self.table = table
+        self.indexName = indexName
+        self.columns = columns
+        self.tableRef = tableRef
+        self.columnsRef = columnsRef
 
 # ----------Bases de datos------------------
 def createDatabase(database, mode, encoding):
@@ -23,7 +34,8 @@ def createDatabase(database, mode, encoding):
             return chooseMode(mode,database)
     except:
         return 1
-    
+
+
 def alterDatabaseMode(database, mode):
     pass
 
@@ -114,10 +126,47 @@ def createTable(database, table, numbercolumns):
 
 def alterTableMode(database, table, mode):
     pass
-def alterTableAddFK(database: str, table: str, indexName: str, columns: list,  tableRef: str, columnsRef: list):
-    pass
+
+def alterTableAddFK(database, table, indexName, columns,  tableRef, columnsRef):
+    
+    try:    
+        Temporal = showTables(database)
+        bandera = False
+        contador = 0
+    except:
+        return 2
+
+    try: 
+        for i in Temporal:
+            if table == i:
+                contador += 1
+                if contador >= 1:
+                    bandera = True
+                
+
+        if len(columns) <= 0 or len(columnsRef) <=0 or len(columns) != len(columnsRef):
+            return 4
+
+        elif bandera == False:
+            return 3
+
+        else:
+            lista.append(controlFK(database,table,indexName,columns,tableRef,columnsRef))
+            return 0
+    except:
+        return 1
+
 def alterTableDropFK(database: str, table: str, indexName: str) -> int:
+        
+    try:                  
+        pass
+
+    except:
+        return 1
+
+def alterTableAddUnique(database, table, indexName, columns):
     pass
+
 
 def alterTable(database, tableOld, tableNew):
     if searchInMode(tableOld) != None:
@@ -525,6 +574,7 @@ def loadCSV(file,database,table):
     else:
         return 2
 
+
 def checksumDatabase(database, mode):
     MegaCadena = ""
 
@@ -662,16 +712,27 @@ def searchInMode(value):
 # print(showDatabases())
 # print(showTables('calificacion'))
 
-print(createDatabase("Base1","avl","utf8"))   
+print(createDatabase("Base1","avl","utf8"))
+print(createDatabase("Base2","b","utf8"))
   
 
 print(createTable('Base1','Pais',4))
+print(createTable('Base2','Paises',4))
 
 print(insert('Base1', 'Pais', ['GTM', 'Guatemala',  'Central America', 108889]))
 print(insert('Base1', 'Pais', ['SLV', 'El Salvado', 'Central America',  21041]))
+
+print(insert('Base2', 'Paises', ['SLV', 'El Salvado', 'Central America',  21041]))
 
 # print(showDatabases())
 # print(showTables('Base1'))
 
 print(checksumDatabase('Base1','SHA256'))
+print(checksumDatabase('Base2','SHA256'))
 print(checksumTable('Base1','Pais','MD5'))
+
+print(alterTableAddFK('Base1','Pais','Perrillo',['Nombre'],'Paises',['NombreP']))
+
+con = 0
+for con in range(len(lista)):
+    print(lista[con].database,lista[con].table,lista[con].indexName,lista[con].columns,lista[con].tableRef,lista[con].columnsRef)
