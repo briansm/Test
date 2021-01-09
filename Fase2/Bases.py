@@ -10,6 +10,19 @@ from storage.HashWindows import HashMode as Hash
 import os
 currentMode,avlList,bList,bplusList,dictList,jsonList,isamList,hashList = [],[],[],[],[],[],[],[]
 
+global lista
+lista = list()
+
+class controlFK:
+    def __init__(self, database, table, indexName, columns, tableRef, columnsRef):
+        self.database = database
+        self.table = table
+        self.indexName = indexName
+        self.columns = columns
+        self.tableRef = tableRef
+        self.columnsRef = columnsRef
+
+
 # ----------Bases de datos------------------
 def createDatabase(database, mode, encoding):
     try:
@@ -114,8 +127,35 @@ def createTable(database, table, numbercolumns):
 
 def alterTableMode(database, table, mode):
     pass
-def alterTableAddFK(database: str, table: str, indexName: str, columns: list,  tableRef: str, columnsRef: list):
-    pass
+def alterTableAddFK(database, table, indexName, columns,  tableRef, columnsRef):
+    
+    try:    
+        Temporal = showTables(database)
+        bandera = False
+        contador = 0
+    except:
+        return 2
+
+    try: 
+        for i in Temporal:
+            if table == i:
+                contador += 1
+                if contador >= 1:
+                    bandera = True
+                
+
+        if len(columns) <= 0 or len(columnsRef) <=0 or len(columns) != len(columnsRef):
+            return 4
+
+        elif bandera == False:
+            return 3
+
+        else:
+            lista.append(controlFK(database,table,indexName,columns,tableRef,columnsRef))
+            return 0
+    except:
+        return 1
+
 def alterTableDropFK(database: str, table: str, indexName: str) -> int:
     pass
 
