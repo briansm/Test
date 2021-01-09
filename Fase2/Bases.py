@@ -156,8 +156,24 @@ def alterTableAddFK(database, table, indexName, columns,  tableRef, columnsRef):
     except:
         return 1
 
-def alterTableDropFK(database: str, table: str, indexName: str) -> int:
-    pass
+def alterTableDropFK(database, table, indexName):
+    try:
+        for j in range(len(lista)):
+            if database == lista[j].database:
+                for k in range(len(lista)):
+                    if table == lista[k].table:
+                        for i in range(len(lista)):
+                            if indexName == lista[i].indexName:
+                                lista.pop(i)
+                                return 0
+                            else:
+                                return 4
+                    else:
+                        return 3
+            else:
+                return 2
+    except:
+        return 1
 
 def alterTable(database, tableOld, tableNew):
     if searchInMode(tableOld) != None:
@@ -706,15 +722,19 @@ print(createDatabase("Base1","avl","utf8"))
   
 
 print(createTable('Base1','Pais',4))
+print(createTable('Base1','Paises',4))
 
 print(insert('Base1', 'Pais', ['GTM', 'Guatemala',  'Central America', 108889]))
-print(insert('Base1', 'Pais', ['SLV', 'El Salvado', 'Central America',  21041]))
+print(insert('Base1', 'Paises', ['SLV', 'El Salvado', 'Central America',  21041]))
 
 # print(showDatabases())
 # print(showTables('Base1'))
 
 print(checksumDatabase('Base1','SHA256'))
 print(checksumTable('Base1','Pais','MD5'))
+
+print(alterTableAddFK('Base1','Pais','Perritos',['Nombre'],'Paises',['NombreP']))
+print(alterTableDropFK('Base1','Pais','Perritos'))
 
 
 # ------------------ 8. Grafos ------------------
