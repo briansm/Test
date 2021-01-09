@@ -4,9 +4,10 @@ from storage.bplus import BPlusMode as bplus
 from storage.DictMode import DictMode as DM
 from storage.isam import ISAMMode as isam
 from storage.json import jsonMode as j
-from storage.Hash import HashMode as Hash
-# from storage.HashWindows import HashMode as Hash
-import os
+#from storage.Hash import HashMode as Hash
+import hashlib
+from storage.HashWindows import HashMode as Hash
+
 currentMode,avlList,bList,bplusList,dictList,jsonList,isamList,hashList = [],[],[],[],[],[],[],[]
 
 # ----------Bases de datos------------------
@@ -39,8 +40,8 @@ def showDatabases():
     return showALL
 
 def alterDatabase(old, new):
-    currentMode = searchInMode(old)
-    if currentMode != None:
+    if searchInMode(old) != None:
+        currentMode = searchInMode(old)
         if currentMode == 'avl':
             avlList.append(new)
             return avl.alterDatabase(old, new)
@@ -64,8 +65,8 @@ def alterDatabase(old, new):
             return Hash.alterDatabase(old, new)
         
 def dropDatabase(database):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             return avl.dropDatabase(database)
         elif currentMode == 'b':
@@ -85,8 +86,8 @@ def dropDatabase(database):
 
 #-------------TABLAS-------------------
 def createTable(database, table, numbercolumns):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             avlList.append(table)
             return avl.createTable(database, table, numbercolumns)
@@ -119,8 +120,8 @@ def alterTableDropFK(database: str, table: str, indexName: str) -> int:
     pass
 
 def alterTable(database, tableOld, tableNew):
-    currentMode = searchInMode(tableOld)
-    if currentMode != None:
+    if searchInMode(tableOld) != None:
+        currentMode = searchInMode(tableOld)
         if currentMode == 'avl':
             avlList.append(tableNew)
             return avl.alterTable(database, tableOld, tableNew)
@@ -146,8 +147,8 @@ def alterTable(database, tableOld, tableNew):
         return 2
 
 def dropTable(database, table):
-    currentMode = searchInMode(table)
-    if currentMode != None:
+    if searchInMode(table) != None:
+        currentMode = searchInMode(table)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.dropTable(database, table)
@@ -173,8 +174,8 @@ def dropTable(database, table):
         return 2
 
 def showTables(database):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.showTables(database)
@@ -201,8 +202,8 @@ def showTables(database):
 
 #--------Registros----------------------
 def alterAddPK(database, table, columns):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.alterAddPK(database, table, columns)
@@ -228,8 +229,8 @@ def alterAddPK(database, table, columns):
         return 2
 
 def alterDropPK(database, table):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.alterDropPK(database, table)
@@ -255,8 +256,8 @@ def alterDropPK(database, table):
         return 2
 
 def insert(database, table, register):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.insert(database, table, register)
@@ -282,8 +283,8 @@ def insert(database, table, register):
         return 2
 
 def update(database, table, register, columns):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.update(database, table, register, columns)
@@ -309,8 +310,8 @@ def update(database, table, register, columns):
         return 2
 
 def delete(database, table, columns):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.delete(database, table, columns)
@@ -336,8 +337,8 @@ def delete(database, table, columns):
         return 2
 
 def truncate(database, table):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.truncate(database, table)
@@ -363,8 +364,8 @@ def truncate(database, table):
         return 2
 
 def alterAddColumn(database,table, default):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.alterAddColumn(database,table, default)
@@ -390,8 +391,8 @@ def alterAddColumn(database,table, default):
         return 2
 
 def alterDropColumn(database, table, columnNumber):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.alterDropColumn(database, table, columnNumber)
@@ -417,8 +418,8 @@ def alterDropColumn(database, table, columnNumber):
         return 2
 
 def extractTable(database, table):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.extractTable(database, table)
@@ -444,8 +445,8 @@ def extractTable(database, table):
         return 2
 
 def extractRangeTable(database, table, columnNumber, lower, upper):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.extractRangeTable(database, table, columnNumber, lower, upper)
@@ -471,8 +472,8 @@ def extractRangeTable(database, table, columnNumber, lower, upper):
         return 2
 
 def extractRow(database, table, columns):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.extractRow(database, table, columns)
@@ -498,8 +499,8 @@ def extractRow(database, table, columns):
         return 2
 
 def loadCSV(file,database,table):
-    currentMode = searchInMode(database)
-    if currentMode != None:
+    if searchInMode(database) != None:
+        currentMode = searchInMode(database)
         if currentMode == 'avl':
             # avlList.append(tableNew)
             return avl.loadCSV(file,database,table)
@@ -523,6 +524,62 @@ def loadCSV(file,database,table):
             return Hash.loadCSV(file,database,table)
     else:
         return 2
+
+def checksumDatabase(database, mode):
+    MegaCadena = ""
+
+    try:
+        lista = showTables(database)
+        MegaCadena = MegaCadena + database
+
+        for i in lista:
+            MegaCadena = MegaCadena + i
+
+            for j in extractTable(database, i):
+                MegaCadena = MegaCadena + str(j)
+        if mode == "MD5":
+            return CodMD5(MegaCadena)
+        else:
+            return CodSHA256(MegaCadena)
+    
+    except:
+        return None
+
+def checksumTable(database, table, mode):
+    MegaCadena = ""
+
+    try:
+        lista = showTables(database)
+
+        for i in lista:
+            if i == table:
+                MegaCadena = MegaCadena + i
+            
+            for j in extractTable(database, i):
+                if i == table:
+                    MegaCadena = MegaCadena + str(j)
+
+        
+        if mode == "MD5":
+            return CodMD5(MegaCadena)
+        else:
+            return CodSHA256(MegaCadena)
+
+    except:
+        return None
+
+def CodMD5(Entrada):
+    MD5Codigo = hashlib.md5()
+    MD5Codigo.update(Entrada.encode('utf8'))
+    Proceso = MD5Codigo.hexdigest()
+    return Proceso
+
+def CodSHA256(Entrada):
+    SHACodigo = hashlib.sha256()
+    SHACodigo.update(Entrada.encode('utf8'))
+    Proceso = SHACodigo.hexdigest()
+    return Proceso
+
 
 #----------------------------------------------------
 def isValidMode(mode):
@@ -601,41 +658,20 @@ def searchInMode(value):
     else:
         return None
 
-# ------------------ 8. Grafos ------------------
+# print(createDatabase('hola','isam','ascii'))
+# print(showDatabases())
+# print(showTables('calificacion'))
 
-#def graphDSD(database: str) -> str:
-#Relacion de tablas con respecto a las FK #no son utiles todavia, al no usar fk no funcionan
-def graphDSD(database: str) :
-    if DM.existDB(database) != None :
-        GDSD(database)
-    else:
-        #BD no existe #modificar el numero si es necesario, no recuerdo que devolvia si no la encontraba
-        return 1
+print(createDatabase("Base1","avl","utf8"))   
+  
 
-def GDSD(baseDatos) :
+print(createTable('Base1','Pais',4))
 
-#def graphDF(database: str, table: str) -> str:
-#Relacion de registros de 1 tabla con repecto a la PK e indices unicos
-def graphDF(database: str, table: str) :
-    l=[] 
-    l.append(extractTable(database,table))
-    GDF(table,l)
+print(insert('Base1', 'Pais', ['GTM', 'Guatemala',  'Central America', 108889]))
+print(insert('Base1', 'Pais', ['SLV', 'El Salvado', 'Central America',  21041]))
 
-def GDF(tabla, lista:list) :
-    f = open("Grafo.dot","w")
-    f.write("digraph g {\n")
-    f.write("node [shape=record]\n")
-    f.write("subgraph cluster_0 {")
-    f.write("\""+str(lista[0][0][0])+"\";\n")
-    for i in range(len(lista[0][0][0])):
-        f.write("\""+str(lista[0][i+1][0])+"\";\n") 
-    f.write("label=\""+tabla+"\";")
-    f.write("color=blue;\n")
-    f.write("}")
-    for i in range(len(lista[0][0][0])):
-        f.write(lista[0][0][0]+"->"+lista[0][i+1][0]+"\n")
-    f.write("}")
-    f.close()
-    os.system("dot -Tjpg Grafo.dot -o Grafo.png")
+# print(showDatabases())
+# print(showTables('Base1'))
 
-    
+print(checksumDatabase('Base1','SHA256'))
+print(checksumTable('Base1','Pais','MD5'))
